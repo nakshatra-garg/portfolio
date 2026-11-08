@@ -6,7 +6,7 @@ Static portfolio site. Plain HTML, CSS and JavaScript, with no build step and no
 index.html              the page
 404.html                "Call dropped." error page
 assets/css/style.css    all styles (colour tokens at the top, light + dark)
-assets/js/main.js       demo call carousel, waveform, filters, theme toggle, copy-email
+assets/js/main.js       demo call carousel, waveform, filters, copy-email, nav hairline
 assets/js/playground.js TTFT vs TTFS latency playground
 assets/js/chat.js       "Ask my résumé" chat (live via worker, or offline BM25 search)
 assets/js/palette.js    Ctrl/⌘+K command palette

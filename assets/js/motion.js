@@ -1,4 +1,4 @@
-/* Motion layer: scroll reveals, stat count-up, journey progress line.
+/* Motion layer: scroll reveals and the journey progress line.
    Everything is visible without JS; this only adds the entrance. */
 (() => {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
@@ -26,27 +26,6 @@
   }), { rootMargin: '0px 0px -8% 0px' });
   targets.forEach((el) => io.observe(el));
 
-  /* ---------- Stat count-up ---------- */
-  const stats = document.querySelectorAll('.stat b');
-  const sio = new IntersectionObserver((entries) => entries.forEach((e) => {
-    if (!e.isIntersecting) return;
-    sio.unobserve(e.target);
-    const node = e.target.firstChild;                     // text node before <small>
-    if (!node || node.nodeType !== 3) return;
-    const final = node.textContent;
-    const m = final.match(/^(~?)(\d+(?:\.\d+)?)(.*)$/);
-    if (!m) return;
-    const [, pre, num, post] = m;
-    const target = parseFloat(num), dec = (num.split('.')[1] || '').length;
-    const t0 = performance.now(), dur = 1100;
-    const tick = (now) => {
-      const p = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - p, 3);
-      node.textContent = `${pre}${(target * eased).toFixed(dec)}${post}`;
-      if (p < 1) requestAnimationFrame(tick); else node.textContent = final;
-    };
-    requestAnimationFrame(tick);
-  }), { threshold: 0.6 });
-  stats.forEach((s) => sio.observe(s));
 
   /* ---------- Journey progress line ---------- */
   const journey = document.getElementById('journey-line');

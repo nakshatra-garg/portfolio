@@ -6,8 +6,8 @@
 <title>Nakshatra Garg · AI Engineer, LLM Inference & Voice AI</title>
 <meta name="description" content="Nakshatra Garg is a Data Scientist and AI Engineer in Noida, India, building production LLM inference, RAG and voice AI systems. His self-hosted LLM serves ~2.5M voice-bot calls a day.">
 <meta name="author" content="Nakshatra Garg">
-<meta name="theme-color" content="#F1F2F8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0A0B17" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B0B0C" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="__SITE_URL__/">
 
 <!-- Social previews -->
@@ -44,12 +44,9 @@
 }
 </script>
 
-<!-- Apply saved theme before paint to avoid a flash -->
-<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- The site follows the system light/dark setting; clear the old per-site choice from v1/v2. -->
+<script>try{localStorage.removeItem('theme');}catch(e){}</script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- Chat backend URL (Cloudflare Worker). Leave empty to run the chat in offline search mode. -->
 <meta name="chat-endpoint" content="">
@@ -75,11 +72,6 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
       <span class="kbar-hint"><kbd id="kbdMod">Ctrl</kbd><kbd>K</kbd></span>
     </button>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
-      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
-      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
-    </button>
-    <a class="btn btn-primary btn-sm nav-cta" href="#contact">Say hello</a>
   </div>
 </header>
 
@@ -90,7 +82,7 @@
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <span class="status"><span class="live-dot" aria-hidden="true"></span>Data Scientist / AI Associate @ Rezo.ai</span>
-        <h1>I make LLMs <span class="hl">pick up the phone.<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q 20 2 38 8 T 74 8 T 110 8 T 146 8 T 182 8 T 218 8 T 254 8 T 298 6"/></svg></span></h1>
+        <h1>I make LLMs <span class="hl">pick up the phone.</span></h1>
         <p class="lede">I'm <strong>Nakshatra Garg</strong>, an AI engineer who builds LLM and voice systems that run in production. My self-hosted LLM answers <strong>~2.5 million voice-bot calls a day</strong> on H200 GPUs, at ~40% lower cost than the API it replaced.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#work">See the work <span aria-hidden="true">→</span></a>

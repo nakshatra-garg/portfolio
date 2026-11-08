@@ -46,24 +46,29 @@
     cv.width = W * dpr; cv.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  function accent() { return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#3A2EF5'; }
+  function accent() {
+    const cs = getComputedStyle(document.documentElement);
+    return [cs.getPropertyValue('--accent').trim() || '#1A66DE', cs.getPropertyValue('--tint-2').trim() || '#12A4A0'];
+  }
   let col = accent();
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { col = accent(); });
   new MutationObserver(() => { col = accent(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    const gap = 6, bw = 3, n = Math.floor(W / gap);
-    ctx.fillStyle = col;
+    const gap = 5, bw = 2, n = Math.floor(W / gap);
+    const grad = ctx.createLinearGradient(0, 0, W, 0);
+    grad.addColorStop(0, col[0]); grad.addColorStop(1, col[1]);
+    ctx.fillStyle = grad;
     for (let i = 0; i < n; i++) {
       const x = i * gap + (W - n * gap) / 2;
       const p = i / n;
       // speech-like envelope: syllable bursts riding a slower phrase contour
       const phrase = 0.5 + 0.5 * Math.sin(p * 7.0 - t * 0.6);
       const syll = Math.abs(Math.sin(p * 46 + t * 2.2) * Math.sin(p * 13 - t * 1.3));
-      let a = 0.08 + 0.85 * phrase * syll;
+      let a = 0.06 + 0.7 * phrase * syll;
       if (mouseX >= 0) a += 0.6 * Math.exp(-Math.pow((x - mouseX) / 70, 2));
       const h = Math.max(3, Math.min(1, a) * H * 0.92);
-      ctx.globalAlpha = 0.25 + 0.75 * Math.min(1, a);
+      ctx.globalAlpha = 0.18 + 0.62 * Math.min(1, a);
       const y = (H - h) / 2;
       ctx.beginPath();
       if (ctx.roundRect) ctx.roundRect(x, y, bw, h, 2); else ctx.rect(x, y, bw, h);
@@ -71,7 +76,7 @@
     }
     ctx.globalAlpha = 1;
   }
-  function loop() { t += 0.016; draw(); requestAnimationFrame(loop); }
+  function loop() { t += 0.009; draw(); requestAnimationFrame(loop); }
   size(); draw();
   window.addEventListener('resize', () => { size(); draw(); });
   cv.parentElement.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouseX = e.clientX - r.left; if (reduce) draw(); });
@@ -118,13 +123,10 @@
     try { navigator.clipboard.writeText(email.textContent).then(done, fallback); } catch { fallback(); }
   });
 
-  /* ---------- Theme toggle (remembers the visitor's choice) ---------- */
-  const root = document.documentElement;
-  const darkMQ = window.matchMedia('(prefers-color-scheme: dark)');
-  document.getElementById('themeToggle')?.addEventListener('click', () => {
-    const cur = root.getAttribute('data-theme') || (darkMQ.matches ? 'dark' : 'light');
-    const next = cur === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-  });
+
+  /* ---------- Nav hairline appears once content scrolls under it ---------- */
+  const nav = document.querySelector('.nav');
+  const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 })();
