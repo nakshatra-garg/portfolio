@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nakshatra Garg · AI Engineer, LLM Inference & Voice AI</title>
+<meta name="description" content="Nakshatra Garg is a Data Scientist and AI Engineer in Noida, India, building production LLM inference, RAG and voice AI systems. His self-hosted LLM serves ~2.5M voice-bot calls a day.">
+<meta name="author" content="Nakshatra Garg">
+<meta name="theme-color" content="#F1F2F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0B17" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="__SITE_URL__/">
+
+<!-- Social previews -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Nakshatra Garg · I make LLMs pick up the phone">
+<meta property="og:description" content="AI Engineer building production LLM inference, RAG and voice AI. ~2.5M voice-bot calls/day on a self-hosted LLM.">
+<meta property="og:url" content="__SITE_URL__/">
+<meta property="og:image" content="__SITE_URL__/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nakshatra Garg · I make LLMs pick up the phone">
+<meta name="twitter:description" content="AI Engineer building production LLM inference, RAG and voice AI.">
+<meta name="twitter:image" content="__SITE_URL__/assets/og.png">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nakshatra Garg",
+  "url": "__SITE_URL__/",
+  "jobTitle": "Data Scientist / AI Associate",
+  "worksFor": { "@type": "Organization", "name": "Rezo.ai" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Noida", "addressRegion": "Uttar Pradesh", "addressCountry": "IN" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Vellore Institute of Technology" },
+    { "@type": "CollegeOrUniversity", "name": "College of Engineering Roorkee" }
+  ],
+  "knowsAbout": ["Large Language Models", "LLM inference", "vLLM", "Retrieval-Augmented Generation", "Voice AI", "Speech recognition", "Text-to-speech", "LoRA fine-tuning"],
+  "sameAs": ["https://www.linkedin.com/in/nakshatra-garg", "https://github.com/nakshatra-garg/"]
+}
+</script>
+
+<!-- Apply saved theme before paint to avoid a flash -->
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Nakshatra Garg, back to top"><span class="brand-mark">NG</span><span class="brand-name">Nakshatra Garg</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#latency">Latency</a>
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-resume" href="assets/files/Nakshatra_Garg_Resume.pdf" download="Nakshatra_Garg_Resume.pdf">Résumé<svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19.5h16"/></svg></a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+    </button>
+    <a class="btn btn-primary btn-sm nav-cta" href="#contact">Say hello</a>
+  </div>
+</header>
+
+<a class="skip" href="#work">Skip to work</a>
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="status"><span class="live-dot" aria-hidden="true"></span>Data Scientist / AI Associate @ Rezo.ai</span>
+        <h1>I make LLMs <span class="hl">pick up the phone.<svg viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q 20 2 38 8 T 74 8 T 110 8 T 146 8 T 182 8 T 218 8 T 254 8 T 298 6"/></svg></span></h1>
+        <p class="lede">I'm <strong>Nakshatra Garg</strong>, an AI engineer who builds LLM and voice systems that run in production. My self-hosted LLM answers <strong>~2.5 million voice-bot calls a day</strong> on H200 GPUs, at ~40% lower cost than the API it replaced.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">See the work <span aria-hidden="true">→</span></a>
+          <a class="btn" href="assets/files/Nakshatra_Garg_Resume.pdf" download="Nakshatra_Garg_Resume.pdf"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19.5h16"/></svg>Download résumé</a>
+        </div>
+        <div class="hero-meta">
+          <span>Noida, India</span>
+          <span>3+ years in production AI</span>
+          <span>M.Tech CSE (AI/ML), VIT</span>
+        </div>
+      </div>
+
+      <aside class="call" aria-label="Illustrative voice-bot call">
+        <div class="call-head">
+          <span class="who"><span class="live-dot" aria-hidden="true"></span>voice-bot · live</span>
+          <span class="timer" id="timer">00:07</span>
+        </div>
+        <div class="call-body" id="callBody">
+          <div class="bubble caller">Mera EMI kab due hai?</div>
+          <div class="chips"><span class="chip acc">lang-id: hi-IN · 98%</span><span class="chip">ASR → LLM</span></div>
+          <div class="bubble bot">Aapka agla EMI 5 December ko due hai. Kya main reminder set kar doon?</div>
+          <div class="chips" style="justify-content:flex-end"><span class="chip ok">TTFS 0.28 s</span><span class="chip">guardrails ✓</span></div>
+        </div>
+        <div class="call-foot">
+          <span>illustrative call</span>
+          <div class="dots" id="dots" role="tablist" aria-label="Example calls"></div>
+        </div>
+      </aside>
+    </div>
+    <canvas class="wave" id="wave" aria-hidden="true"></canvas>
+  </section>
+
+  <!-- IMPACT -->
+  <div class="impact">
+    <div class="wrap impact-grid">
+      <div class="stat"><b>2.5M<small>/day</small></b><span>voice-bot calls served by a self-hosted LLM</span></div>
+      <div class="stat"><b>~40<small>%</small></b><span>lower inference cost vs. third-party API</span></div>
+      <div class="stat"><b>0.3<small>s</small></b><span>p95 time to first sentence</span></div>
+      <div class="stat"><b>35<small>×</small></b><span>faster audio encode with CUDA graphs</span></div>
+      <div class="stat"><b>20<small>×</small></b><span>lower voice-cloning latency (20 s → 1 s)</span></div>
+    </div>
+  </div>
+
+  <!-- LATENCY -->
+  <section class="block" id="latency">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Anatomy of a reply</span>
+        <h2>A caller hears a sentence, not a token.</h2>
+        <p>Text-to-speech can't start until a full sentence exists, so time-to-first-token undersells what a caller waits through. I made <strong>Time-to-First-Sentence (TTFS)</strong> our primary voice latency metric. Here's the production budget, drawn to scale.</p>
+      </div>
+
+      <div class="latency" id="latChart">
+        <div class="lat-row">
+          <div class="lat-label"><b>First token (TTFT)</b><span class="mono">50 ms</span></div>
+          <div class="lat-track"><div class="lat-bar" style="width:2.5%"></div></div>
+        </div>
+        <div class="lat-row">
+          <div class="lat-label"><b>First sentence p95</b><span class="mono">300 ms</span></div>
+          <div class="lat-track"><div class="lat-bar" style="width:15%"></div></div>
+        </div>
+        <div class="lat-row">
+          <div class="lat-label"><b>First sentence p99</b><span class="mono">600 ms</span></div>
+          <div class="lat-track"><div class="lat-bar" style="width:30%"></div></div>
+        </div>
+        <div class="lat-row">
+          <div class="lat-label"><b>Full response p95</b><span class="mono">1.5–2 s</span></div>
+          <div class="lat-track"><div class="lat-bar" style="width:75%"></div><div class="lat-bar range" style="left:75%;width:25%;border-radius:0 8px 8px 0"></div></div>
+        </div>
+        <div class="lat-axis">
+          <div></div>
+          <div class="ticks mono"><span style="left:0">0</span><span style="left:25%">500 ms</span><span style="left:50%">1 s</span><span style="left:75%">1.5 s</span><span style="left:100%">2 s</span></div>
+        </div>
+      </div>
+
+      <div class="lat-note">
+        <div><h3>Served on my own stack</h3><p>An open-weight LLM on vLLM and NVIDIA H200s, behind a smart HAProxy router. No caller data leaves our infrastructure.</p></div>
+        <div><h3>Guarded inside the budget</h3><p>PII redaction, thinking-token leak suppression, repetition control and content filtering, all within those numbers.</p></div>
+        <div><h3>Watched in real time</h3><p>Every percentile above is tracked live on Prometheus dashboards, so regressions show up before callers notice.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="block" id="work" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Selected work</span>
+        <h2>Systems that ship, measured in production.</h2>
+        <p>Most of this runs for enterprise clients at Rezo.ai. Filter by area to jump to what you care about.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects">
+        <button class="filter" id="f-all" data-f="all" aria-pressed="true">All<span class="n"></span></button>
+        <button class="filter" id="f-llm" data-f="llm" aria-pressed="false">LLM serving<span class="n"></span></button>
+        <button class="filter" id="f-voice" data-f="voice" aria-pressed="false">Voice & speech<span class="n"></span></button>
+        <button class="filter" id="f-rag" data-f="rag" aria-pressed="false">RAG & retrieval<span class="n"></span></button>
+        <button class="filter" id="f-vision" data-f="vision" aria-pressed="false">Vision & OCR<span class="n"></span></button>
+      </div>
+
+      <div class="work-grid" id="workGrid">
+        <article class="card feature" data-cat="llm">
+          <span class="card-cat">LLM serving · flagship</span>
+          <h3>Self-hosted LLM for 2.5M calls a day</h3>
+          <div class="metric">~40% cheaper inference</div>
+          <p>Replaced a third-party LLM API with an open-weight model on vLLM and H200 GPUs. A smart router on HAProxy spreads load; quality and latency matched or beat the old API, and external data exposure went to zero.</p>
+          <div class="chips"><span class="chip">vLLM</span><span class="chip">NVIDIA H200</span><span class="chip">HAProxy router</span><span class="chip">Prometheus</span><span class="chip">50 ms TTFT</span></div>
+        </article>
+        <article class="card" data-cat="voice">
+          <span class="card-cat">Voice · language ID</span>
+          <h3>Real-time spoken language ID</h3>
+          <div class="metric">35× faster encode</div>
+          <p>vLLM plus an open multimodal model. CUDA graph capture cut audio-encode time; serves 100+ concurrent callers at sub-300 ms p95 with 98% accuracy. Rolled out from A100 to Blackwell, doubling capacity.</p>
+          <div class="chips"><span class="chip">CUDA graphs</span><span class="chip">multimodal LLM</span><span class="chip">multi-GPU</span></div>
+        </article>
+        <article class="card" data-cat="llm">
+          <span class="card-cat">LLM serving · safety</span>
+          <h3>Multi-layer guardrail stack</h3>
+          <div class="metric">5 layers, in budget</div>
+          <p>Post-processing over the serving layer: PII redaction, reasoning-token leak suppression, repetition control, harmful-content filtering and system-prompt adherence.</p>
+          <div class="chips"><span class="chip">PII redaction</span><span class="chip">content filtering</span><span class="chip">streaming</span></div>
+        </article>
+        <article class="card" data-cat="rag">
+          <span class="card-cat">RAG · retrieval</span>
+          <h3>Hybrid-retrieval RAG for chat & voice bots</h3>
+          <div class="metric">~80% precision@3</div>
+          <p>BM25 plus dense vectors in Qdrant, then reranking, across multiple enterprise clients. Fewer hallucinations and higher flow completion, backed by an embedding service with two-tier caching.</p>
+          <div class="chips"><span class="chip">BM25</span><span class="chip">Qdrant</span><span class="chip">reranker</span><span class="chip">Redis</span></div>
+        </article>
+        <article class="card" data-cat="voice rag">
+          <span class="card-cat">Voice · caching</span>
+          <h3>Vector-similarity TTS cache</h3>
+          <div class="metric">Synthesize once, reuse</div>
+          <p>Matches new bot utterances to semantically identical past audio, cutting redundant synthesis and TTS costs for enterprise voice bots.</p>
+          <div class="chips"><span class="chip">BGE-M3</span><span class="chip">pgvector</span><span class="chip">Redis</span><span class="chip">Azure Blob</span></div>
+        </article>
+        <article class="card" data-cat="voice">
+          <span class="card-cat">Voice · synthesis</span>
+          <h3>Real-time voice cloning</h3>
+          <div class="metric">20 s → 1 s</div>
+          <p>A custom headless, in-memory inference pipeline on RVC that made voice cloning fast enough for live calls.</p>
+          <div class="chips"><span class="chip">RVC</span><span class="chip">in-memory inference</span></div>
+        </article>
+        <article class="card" data-cat="llm voice">
+          <span class="card-cat">Training · fine-tuning</span>
+          <h3>LoRA fine-tunes and in-house ASR/TTS</h3>
+          <div class="metric">Qwen3.5-4B · Gemma-4B</div>
+          <p>LoRA fine-tuning evaluated with LLM-as-a-judge and human review. I now own data collection, curation and training for in-house ASR and TTS models on domain call audio.</p>
+          <div class="chips"><span class="chip">LoRA / QLoRA</span><span class="chip">LLM-as-a-judge</span><span class="chip">ASR</span><span class="chip">TTS</span></div>
+        </article>
+        <article class="card" data-cat="vision">
+          <span class="card-cat">Vision · KYC</span>
+          <h3>ID-document OCR for a leading Indian bank</h3>
+          <div class="metric">Aadhaar & PAN</div>
+          <p>Extraction from government ID documents that powers production KYC and verification. Earlier, I lifted OCR accuracy 15% by reworking the detection-to-OCR pipeline and retraining against drift.</p>
+          <div class="chips"><span class="chip">object detection</span><span class="chip">OCR</span><span class="chip">data drift</span></div>
+        </article>
+        <article class="card" data-cat="llm">
+          <span class="card-cat">LLM · developer tooling</span>
+          <h3>LLM-powered code review</h3>
+          <div class="metric">Best practices, enforced</div>
+          <p>Led the build of an LLM code-review system that checks changes against team conventions across engineering.</p>
+          <div class="chips"><span class="chip">LLM agents</span><span class="chip">prompt engineering</span></div>
+        </article>
+        <article class="card" data-cat="voice">
+          <span class="card-cat">Voice · analytics</span>
+          <h3>Speech analytics & rudeness detection</h3>
+          <div class="metric">Post-call insight</div>
+          <p>Metrics for agent–customer calls (silence, interruptions, response latency, flow) plus an ML rudeness classifier trained on audio features I engineered.</p>
+          <div class="chips"><span class="chip">audio features</span><span class="chip">classification</span><span class="chip">Flask + Swagger</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="block" id="stack" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Stack</span>
+        <h2>From GPU kernel flags to FastAPI endpoints.</h2>
+        <p>The tools I reach for, grouped by the layer of the system they sit in.</p>
+      </div>
+      <div class="stack">
+        <div class="stack-group"><h3>LLM serving & inference</h3><div class="tags"><span class="tag">vLLM</span><span class="tag">open-weight LLMs</span><span class="tag">streaming inference</span><span class="tag">TTFT / p95 tuning</span><span class="tag">CUDA graphs</span><span class="tag">multi-GPU</span><span class="tag">H200 · Blackwell · A100 · T4</span><span class="tag">Ollama</span></div></div>
+        <div class="stack-group"><h3>GenAI & NLP</h3><div class="tags"><span class="tag">RAG</span><span class="tag">BM25 + dense hybrid</span><span class="tag">reranking</span><span class="tag">BGE-M3</span><span class="tag">LoRA / QLoRA</span><span class="tag">Hugging Face</span><span class="tag">LLM-as-a-judge</span><span class="tag">guardrails</span><span class="tag">multimodal LLMs</span><span class="tag">Anthropic Claude</span></div></div>
+        <div class="stack-group"><h3>Speech & voice</h3><div class="tags"><span class="tag">ASR / STT</span><span class="tag">TTS</span><span class="tag">language ID</span><span class="tag">RVC voice cloning</span><span class="tag">SpeechBrain</span><span class="tag">Azure Speech</span><span class="tag">real-time voice bots</span></div></div>
+        <div class="stack-group"><h3>LLMOps & infra</h3><div class="tags"><span class="tag">Docker</span><span class="tag">HAProxy</span><span class="tag">Prometheus</span><span class="tag">Redis</span><span class="tag">model-serving APIs</span><span class="tag">monitoring</span></div></div>
+        <div class="stack-group"><h3>Languages & APIs</h3><div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">WebSocket</span><span class="tag">REST</span><span class="tag">SQL</span></div></div>
+        <div class="stack-group"><h3>Data & cloud</h3><div class="tags"><span class="tag">Qdrant</span><span class="tag">pgvector</span><span class="tag">FAISS</span><span class="tag">ChromaDB</span><span class="tag">MySQL</span><span class="tag">Azure ML & AI Services</span><span class="tag">AWS EC2 · S3 · Bedrock</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="block" id="journey" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Journey</span>
+        <h2>From a Watson chatbot to 2.5M calls a day.</h2>
+      </div>
+      <div class="journey-wrap">
+        <div class="journey">
+          <div class="step now">
+            <span class="node" aria-hidden="true"></span>
+            <div class="step-body">
+              <div class="step-top"><h3>Data Scientist / AI Associate</h3><span class="when">May 2024 – present</span></div>
+              <span class="org">Rezo.ai · Noida</span>
+              <ul>
+                <li>Own the self-hosted LLM behind ~2.5M voice-bot calls/day; introduced TTFS as the voice latency metric.</li>
+                <li>Built the guardrail stack, language-ID service, hybrid RAG, TTS cache and real-time voice cloning.</li>
+                <li>Fine-tune LLMs with LoRA; own data and training pipelines for in-house ASR and TTS.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <span class="node" aria-hidden="true"></span>
+            <div class="step-body">
+              <div class="step-top"><h3>Data Science Intern</h3><span class="when">Aug 2023 – Apr 2024</span></div>
+              <span class="org">Rezo.ai · Noida</span>
+              <ul>
+                <li>Improved document OCR accuracy by upgrading and retraining the detection model.</li>
+                <li>Designed speech-analytics metrics and a rudeness-detection dataset from audio features.</li>
+                <li>Shipped Flask APIs documented with Swagger.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <span class="node" aria-hidden="true"></span>
+            <div class="step-body">
+              <div class="step-top"><h3>Data Science Intern</h3><span class="when">Dec 2021 – May 2022</span></div>
+              <span class="org">vel.ai</span>
+              <ul>
+                <li>Improved object-detection models for medical conditions in X-ray images.</li>
+                <li>Built time-series models for crypto, oil and energy data.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="step">
+            <span class="node" aria-hidden="true"></span>
+            <div class="step-body">
+              <div class="step-top"><h3>Data Science Intern</h3><span class="when">May – Jun 2021</span></div>
+              <span class="org">Technocolabs</span>
+              <ul><li>End-to-end "ML in Intraday Trading" project: EDA, an LSTM for Microsoft stock prices, deployed with Flask.</li></ul>
+            </div>
+          </div>
+          <div class="step">
+            <span class="node" aria-hidden="true"></span>
+            <div class="step-body">
+              <div class="step-top"><h3>AI Summer Intern</h3><span class="when">May – Jun 2020</span></div>
+              <span class="org">TheSmartBridge</span>
+              <ul><li>Customer-care chatbot on IBM Cloud, grounded in a user manual with Watson Discovery. My first taste of retrieval.</li></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="panel">
+            <h3>Education</h3>
+            <ul>
+              <li><span><b>M.Tech, CSE (AI/ML)</b><br>VIT Vellore · CGPA 8.9</span><span>2022–24</span></li>
+              <li><span><b>B.Tech, Information Technology</b><br>College of Engineering Roorkee · CGPA 8.4</span><span>2018–22</span></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Publication</h3>
+            <p class="big">Predictive Modeling of Crop Yield Using Deep Learning Based Transformer with Climate Change Effects</p>
+          </div>
+          <div class="panel">
+            <h3>Certifications</h3>
+            <ul>
+              <li><span>IBM Applied AI Professional Certificate</span><span>IBM</span></li>
+              <li><span>Advanced Computer Vision with TensorFlow</span><span>CV</span></li>
+              <li><span>Visual Analytics with Tableau</span><span>BI</span></li>
+              <li><span>Google IT Support Professional Certificate</span><span>Google</span></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Languages</h3>
+            <ul>
+              <li><span>English</span><span>native / bilingual</span></li>
+              <li><span>Hindi</span><span>native / bilingual</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block" id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's build something that <span>talks back.</span></h2>
+        <p>Open to conversations about LLM inference, voice AI and production RAG. Always happy to connect.</p>
+        <div class="contact-row">
+          <div class="email-box"><code id="email">gargnakshatra11@gmail.com</code><button id="copyBtn" type="button">Copy email</button></div>
+        </div>
+        <div class="contact-row">
+          <a class="btn btn-light" href="assets/files/Nakshatra_Garg_Resume.pdf" download="Nakshatra_Garg_Resume.pdf"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19.5h16"/></svg>Résumé (PDF)</a>
+          <a class="btn" href="https://www.linkedin.com/in/nakshatra-garg" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn" href="https://github.com/nakshatra-garg/" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn" href="https://nakshatragarg.me" target="_blank" rel="noopener">nakshatragarg.me ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nakshatra Garg · Noida, India</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+</body>
+</html>
