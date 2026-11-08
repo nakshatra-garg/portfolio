@@ -51,7 +51,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- Chat backend URL (Cloudflare Worker). Leave empty to run the chat in offline search mode. -->
+<meta name="chat-endpoint" content="">
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/playground.js" defer></script>
+<script src="assets/js/chat.js" defer></script>
+<script src="assets/js/palette.js" defer></script>
 </head>
 <body>
 <header class="nav">
@@ -65,6 +71,10 @@
       <a href="#contact">Contact</a>
       <a class="nav-resume" href="assets/files/Nakshatra_Garg_Resume.pdf" download="Nakshatra_Garg_Resume.pdf">Résumé<svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19.5h16"/></svg></a>
     </nav>
+    <button class="kbar-btn" id="kbarBtn" type="button" aria-label="Search and jump (Ctrl+K)" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+      <span class="kbar-hint"><kbd id="kbdMod">Ctrl</kbd><kbd>K</kbd></span>
+    </button>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
       <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
       <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
@@ -160,6 +170,46 @@
         <div><h3>Served on my own stack</h3><p>An open-weight LLM on vLLM and NVIDIA H200s, behind a smart HAProxy router. No caller data leaves our infrastructure.</p></div>
         <div><h3>Guarded inside the budget</h3><p>PII redaction, thinking-token leak suppression, repetition control and content filtering, all within those numbers.</p></div>
         <div><h3>Watched in real time</h3><p>Every percentile above is tracked live on Prometheus dashboards, so regressions show up before callers notice.</p></div>
+      </div>
+
+      <div class="pg" id="playground">
+        <div class="pg-head">
+          <div class="pg-title">
+            <span class="eyebrow">Try it</span>
+            <h3>Same reply, two ways to speak it.</h3>
+            <p>The LLM streams tokens. One voice pipeline starts speaking at the first full sentence; the other waits for the whole reply. Change the knobs and press play.</p>
+          </div>
+          <div class="pg-actions">
+            <button class="btn btn-primary" id="pgPlay" type="button"><svg viewBox="0 0 24 24" aria-hidden="true" class="pg-ico"><path d="M7 4.5v15l12-7.5z"/></svg><span>Play</span></button>
+            <label class="pg-toggle"><input type="checkbox" id="pgSlow" checked> Slow motion (⅓ speed)</label>
+          </div>
+        </div>
+
+        <div class="pg-controls">
+          <label class="pg-field" for="pgTtft"><span>Time to first token <output id="pgTtftOut">50 ms</output></span>
+            <input type="range" id="pgTtft" min="20" max="800" step="10" value="50"></label>
+          <label class="pg-field" for="pgTps"><span>Generation speed <output id="pgTpsOut">45 tok/s</output></span>
+            <input type="range" id="pgTps" min="15" max="150" step="5" value="45"></label>
+          <fieldset class="pg-field pg-seg">
+            <legend>Opening sentence</legend>
+            <div class="seg">
+              <input type="radio" name="pgOpen" id="pgOpenShort" value="short" checked><label for="pgOpenShort">Short</label>
+              <input type="radio" name="pgOpen" id="pgOpenLong" value="long"><label for="pgOpenLong">Long</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="pg-text" id="pgText" aria-live="off"></div>
+
+        <div class="pg-lanes" id="pgLanes">
+          <div class="lane"><div class="lane-label"><b>LLM tokens</b><span id="pgL1">TTFS 316 ms</span></div><div class="lane-track"><div class="seg-wait" id="pgThink"></div><div class="seg-fill" id="pgGen"></div><i class="mark" id="pgMarkS" title="first sentence complete"></i></div></div>
+          <div class="lane"><div class="lane-label"><b>Voice, sentence-chunked</b><span id="pgL2">speaks at 396 ms</span></div><div class="lane-track"><div class="seg-wait" id="pgSilA"></div><div class="seg-talk" id="pgTalkA"></div></div></div>
+          <div class="lane"><div class="lane-label"><b>Voice, wait for full reply</b><span id="pgL3">speaks at 0.66 s</span></div><div class="lane-track"><div class="seg-wait" id="pgSilB"></div><div class="seg-talk" id="pgTalkB"></div></div></div>
+          <div class="pg-axis" id="pgAxis"></div>
+          <i class="playhead" id="pgHead"></i>
+        </div>
+        <p class="pg-verdict" id="pgVerdict"></p>
+        <p class="pg-foot">Model: first audio = time to the speakable text + ~80 ms for streaming TTS to return its first chunk. Speech plays at ~2.5 words/s, so the voice never runs out of text once it starts.</p>
       </div>
     </div>
   </section>
@@ -282,7 +332,7 @@
         <h2>From a Watson chatbot to 2.5M calls a day.</h2>
       </div>
       <div class="journey-wrap">
-        <div class="journey">
+        <div class="journey" id="journey-line"><span class="journey-progress" aria-hidden="true"></span>
           <div class="step now">
             <span class="node" aria-hidden="true"></span>
             <div class="step-body">
@@ -389,6 +439,48 @@
     </div>
   </section>
 </main>
+
+<!-- Ask my résumé -->
+<button class="chat-fab" id="chatFab" type="button" aria-expanded="false" aria-controls="chatPanel">
+  <span class="fab-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span>Ask my résumé</span>
+</button>
+<section class="chat" id="chatPanel" role="dialog" aria-modal="false" aria-labelledby="chatTitle" hidden>
+  <header class="chat-head">
+    <div>
+      <h2 id="chatTitle">Ask about Nakshatra</h2>
+      <span class="chat-mode" id="chatMode">Offline search</span>
+    </div>
+    <button class="chat-x" id="chatClose" type="button" aria-label="Close chat">×</button>
+  </header>
+  <div class="chat-log" id="chatLog" aria-live="polite">
+    <div class="msg bot"><div class="bubble-a">Hi! Ask me anything about Nakshatra's work: projects, skills, numbers or background. Every answer cites the part of his profile it comes from.</div></div>
+  </div>
+  <div class="chat-suggest" id="chatSuggest">
+    <button type="button">How did he cut LLM costs by 40%?</button>
+    <button type="button">What is TTFS and why does it matter?</button>
+    <button type="button">Has he fine-tuned LLMs?</button>
+    <button type="button">What RAG work has he done?</button>
+  </div>
+  <form class="chat-form" id="chatForm" autocomplete="off">
+    <label class="sr" for="chatInput">Your question</label>
+    <input id="chatInput" type="text" maxlength="600" placeholder="e.g. Which GPUs has he deployed on?" required>
+    <button type="submit" id="chatSend" aria-label="Send question"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+  </form>
+</section>
+
+<!-- Command palette -->
+<div class="kbar" id="kbar" hidden>
+  <div class="kbar-scrim" data-close></div>
+  <div class="kbar-box" role="dialog" aria-modal="true" aria-label="Search and jump">
+    <div class="kbar-input">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+      <input id="kbarInput" type="text" placeholder="Jump to a section, project or action…" role="combobox" aria-expanded="true" aria-controls="kbarList" aria-autocomplete="list">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="kbar-list" id="kbarList" role="listbox"></ul>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">

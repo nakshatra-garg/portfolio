@@ -1,0 +1,20 @@
+name = "nakshatra-portfolio-chat"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Comma-separated list of sites allowed to call this worker.
+ALLOWED_ORIGINS = "https://nakshatra-garg.github.io,http://localhost:8000"
+# Model used for answers. claude-haiku-5-5 is ~40x cheaper if you want to cut cost.
+MODEL = "claude-opus-5-5"
+
+# Per-visitor rate limit: 8 questions per minute per IP.
+[[ratelimits]]
+name = "CHAT_LIMITER"
+namespace_id = "1001"
+  [ratelimits.simple]
+  limit = 8
+  period = 60
+
+# Secret (never commit it):  npx wrangler secret put ANTHROPIC_API_KEY
