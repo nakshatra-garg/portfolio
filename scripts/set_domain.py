@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FILES = ["index.html", "robots.txt", "sitemap.xml"]
+FILES = ["index.html", "robots.txt", "sitemap.xml", "llms.txt"]
 STATE = ROOT / "scripts" / ".domain.json"
 
 

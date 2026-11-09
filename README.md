@@ -16,7 +16,7 @@ assets/files/           public résumé PDF (phone number removed)
 worker/                 Cloudflare Worker that powers live chat with Claude
 assets/favicon.svg      icon
 assets/og.png           1200x630 link preview for LinkedIn / X / WhatsApp
-robots.txt, sitemap.xml SEO
+robots.txt, sitemap.xml, llms.txt  SEO (llms.txt is a plain-text profile for AI search engines)
 scripts/set_domain.py   points the site at your domain + writes CNAME
 scripts/make_images.js  regenerates og.png and apple-touch-icon.png (needs Playwright)
 .github/workflows/      auto-deploy to GitHub Pages on every push to main

@@ -11,10 +11,10 @@ const bars = Array.from({ length: 64 }, (_, i) => {
 }).join('');
 
 const og = `<!doctype html><html><head>${fonts}<style>
-  body{margin:0;width:1200px;height:630px;background:#0B0B0C;color:#F5F5F7;font-family:-apple-system,'Helvetica Neue',Inter,Arial,sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:72px 80px;box-sizing:border-box;overflow:hidden}
+  body{margin:0;width:1200px;height:630px;background:#0B0B0C;color:#F5F5F7;font-family:-apple-system,'Helvetica Neue',Inter,Arial,sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:64px 80px;box-sizing:border-box;overflow:hidden}
   .top{font:500 24px -apple-system,'Helvetica Neue',Arial,sans-serif;color:#A1A1A6;display:flex;align-items:center;gap:14px;letter-spacing:.04em}
   .dot{width:10px;height:10px;border-radius:50%;background:#4CC38A}
-  h1{margin:0;font-size:100px;line-height:1;letter-spacing:-.045em;font-weight:600}
+  h1{margin:0;font-size:76px;line-height:1.04;letter-spacing:-.04em;font-weight:600}
   h1 span{background:linear-gradient(90deg,#5AA2FF,#3CD4C8);-webkit-background-clip:text;background-clip:text;color:transparent}
   .bot{display:flex;justify-content:space-between;align-items:flex-end}
   .name{font-size:32px;font-weight:600;letter-spacing:-.02em}
@@ -23,8 +23,8 @@ const og = `<!doctype html><html><head>${fonts}<style>
   .wave{background:linear-gradient(90deg,#5AA2FF,#3CD4C8);-webkit-mask:linear-gradient(#000,#000)}.wave i{display:block;width:3px;border-radius:2px;background:#5AA2FF}
 </style></head><body>
   <div class="top"><span class="dot"></span>AI engineer · LLM inference & voice AI</div>
-  <h1>I make LLMs<br><span>pick up the phone.</span></h1>
-  <div class="bot"><div class="name">Nakshatra Garg<small>~2.5M voice-bot calls a day on a self-hosted LLM</small></div><div class="wave">${bars}</div></div>
+  <h1>I build LLM and voice AI<br>systems that handle<br><span>millions of calls</span> a day.</h1>
+  <div class="bot"><div class="name">Nakshatra Garg<small>Self-hosted LLMs · RAG · real-time voice AI</small></div><div class="wave">${bars}</div></div>
 </body></html>`;
 
 (async () => {

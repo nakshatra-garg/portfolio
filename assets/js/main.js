@@ -114,17 +114,38 @@
   }, { passive: true });
   setActive();
 
-  /* ---------- Copy email ---------- */
-  const btn = document.getElementById('copyBtn');
-  const email = document.getElementById('email');
-  btn?.addEventListener('click', () => {
-    const reset = (ms) => setTimeout(() => { btn.textContent = 'Copy email'; }, ms);
-    const fallback = () => {
-      const r = document.createRange(); r.selectNodeContents(email);
-      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      btn.textContent = 'Press Ctrl+C'; reset(2400);
-    };
-    try { navigator.clipboard.writeText(email.textContent).then(() => { btn.textContent = 'Copied'; reset(1600); }, fallback); }
-    catch { fallback(); }
-  });
+  /* ---------- Parallax: elements drift with scroll at their own speed ---------- */
+  // speed is the fraction of the element's distance from the viewport centre it moves (e.g. 0.06 = 6%).
+  const layers = [...document.querySelectorAll('[data-parallax]')];
+  const cardsPx = [...document.querySelectorAll('#workGrid .proj:not(.feature)')];
+  const wide = window.matchMedia('(min-width: 700px) and (prefers-reduced-motion: no-preference)');
+  function columnSpeeds() {
+    // Alternate columns drift in opposite directions for a staggered depth effect.
+    cardsPx.forEach((c) => {
+      const pr = c.parentElement.getBoundingClientRect(), cr = c.getBoundingClientRect();
+      const left = cr.left - pr.left < pr.width / 3;
+      c.dataset.parallax = left ? '0.025' : '-0.035';
+    });
+  }
+  let pxTick = false;
+  function parallax() {
+    pxTick = false;
+    const vh = window.innerHeight;
+    for (const el of [...layers, ...cardsPx]) {
+      const speed = parseFloat(el.dataset.parallax) || 0;
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) continue;   // off screen: skip
+      const fromCentre = r.top + r.height / 2 - vh / 2;
+      el.style.setProperty('--py', `${(-fromCentre * speed).toFixed(1)}px`);
+    }
+  }
+  function enablePx() {
+    if (!wide.matches) { [...layers, ...cardsPx].forEach((el) => el.style.removeProperty('--py')); return; }
+    columnSpeeds(); parallax();
+  }
+  window.addEventListener('scroll', () => { if (wide.matches && !pxTick) { pxTick = true; requestAnimationFrame(parallax); } }, { passive: true });
+  window.addEventListener('resize', enablePx);
+  wide.addEventListener?.('change', enablePx);
+  document.getElementById('filters')?.addEventListener('click', () => requestAnimationFrame(enablePx));
+  enablePx();
 })();

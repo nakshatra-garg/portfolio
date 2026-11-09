@@ -3,24 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nakshatra Garg · AI Engineer, LLM Inference & Voice AI</title>
-<meta name="description" content="Nakshatra Garg is a Data Scientist and AI Engineer in Noida, India, building production LLM inference, RAG and voice AI systems. His self-hosted LLM serves ~2.5M voice-bot calls a day.">
+<title>Nakshatra Garg · AI Engineer for LLM Inference, Voice AI & RAG</title>
+<meta name="description" content="AI engineer building production LLM inference, RAG and real-time voice AI that handles millions of calls a day: self-hosted vLLM on H200 GPUs, guardrails, ASR/TTS. Noida, India.">
 <meta name="author" content="Nakshatra Garg">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0B0B0C" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="__SITE_URL__/">
 
 <!-- Social previews -->
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Nakshatra Garg · I make LLMs pick up the phone">
-<meta property="og:description" content="AI Engineer building production LLM inference, RAG and voice AI. ~2.5M voice-bot calls/day on a self-hosted LLM.">
+<meta property="og:title" content="Nakshatra Garg · AI Engineer for LLM inference, voice AI and RAG">
+<meta property="og:description" content="I build LLM and voice AI systems that handle millions of calls a day: self-hosted LLMs, guardrails, hybrid RAG and real-time speech.">
 <meta property="og:url" content="__SITE_URL__/">
+<meta property="og:site_name" content="Nakshatra Garg">
+<meta property="og:locale" content="en_IN">
+<meta property="profile:first_name" content="Nakshatra">
+<meta property="profile:last_name" content="Garg">
 <meta property="og:image" content="__SITE_URL__/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nakshatra Garg, AI engineer: I build LLM and voice AI systems that handle millions of calls a day.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nakshatra Garg · I make LLMs pick up the phone">
-<meta name="twitter:description" content="AI Engineer building production LLM inference, RAG and voice AI.">
+<meta name="twitter:title" content="Nakshatra Garg · AI Engineer for LLM inference, voice AI and RAG">
+<meta name="twitter:description" content="I build LLM and voice AI systems that handle millions of calls a day.">
 <meta name="twitter:image" content="__SITE_URL__/assets/og.png">
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -29,18 +35,47 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Nakshatra Garg",
-  "url": "__SITE_URL__/",
-  "jobTitle": "Data Scientist / AI Associate",
-  "worksFor": { "@type": "Organization", "name": "Rezo.ai" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Noida", "addressRegion": "Uttar Pradesh", "addressCountry": "IN" },
-  "alumniOf": [
-    { "@type": "CollegeOrUniversity", "name": "Vellore Institute of Technology" },
-    { "@type": "CollegeOrUniversity", "name": "College of Engineering Roorkee" }
-  ],
-  "knowsAbout": ["Large Language Models", "LLM inference", "vLLM", "Retrieval-Augmented Generation", "Voice AI", "Speech recognition", "Text-to-speech", "LoRA fine-tuning"],
-  "sameAs": ["https://www.linkedin.com/in/nakshatra-garg", "https://github.com/nakshatra-garg/"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "__SITE_URL__/#website",
+      "url": "__SITE_URL__/",
+      "name": "Nakshatra Garg",
+      "inLanguage": "en",
+      "publisher": { "@id": "__SITE_URL__/#person" }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "__SITE_URL__/#profile",
+      "url": "__SITE_URL__/",
+      "name": "Nakshatra Garg · AI Engineer for LLM Inference, Voice AI & RAG",
+      "isPartOf": { "@id": "__SITE_URL__/#website" },
+      "mainEntity": { "@id": "__SITE_URL__/#person" },
+      "dateModified": "2026-11-09"
+    },
+    {
+      "@type": "Person",
+      "@id": "__SITE_URL__/#person",
+      "name": "Nakshatra Garg",
+      "url": "__SITE_URL__/",
+      "image": "__SITE_URL__/assets/og.png",
+      "jobTitle": "AI Engineer (Data Scientist / AI Associate)",
+      "description": "AI engineer building production LLM inference, retrieval-augmented generation (RAG) and real-time voice AI systems.",
+      "worksFor": { "@type": "Organization", "name": "Rezo.ai", "url": "https://rezo.ai" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Noida", "addressRegion": "Uttar Pradesh", "addressCountry": "IN" },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Vellore Institute of Technology" },
+        { "@type": "CollegeOrUniversity", "name": "College of Engineering Roorkee" }
+      ],
+      "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "M.Tech, Computer Science and Engineering (AI/ML)" },
+        { "@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "B.Tech, Information Technology" }
+      ],
+      "knowsAbout": ["Large language models", "LLM inference", "vLLM", "GPU inference", "Retrieval-augmented generation", "Hybrid search", "Voice AI", "Speech recognition", "Spoken language identification", "Text-to-speech", "LoRA fine-tuning", "LLM evaluation", "Guardrails", "Python", "FastAPI"],
+      "knowsLanguage": ["English", "Hindi"],
+      "sameAs": ["https://www.linkedin.com/in/nakshatra-garg", "https://github.com/nakshatra-garg"]
+    }
+  ]
 }
 </script>
 
@@ -56,6 +91,24 @@
 <script src="assets/js/palette.js" defer></script>
 </head>
 <body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.8 7 8.2 6 8.2-6"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.55 4.77 5.86V21h-4v-5.2c0-1.24-.03-2.84-1.8-2.84-1.8 0-2.08 1.35-2.08 2.75V21h-4z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .8C5.8.8.8 5.8.8 12a11.2 11.2 0 0 0 7.66 10.63c.56.1.77-.24.77-.54v-1.9c-3.12.68-3.78-1.33-3.78-1.33-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.94.1-.73.39-1.22.71-1.5-2.49-.28-5.11-1.25-5.11-5.54 0-1.22.44-2.22 1.15-3.01-.11-.28-.5-1.42.11-2.96 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.62 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.54.23 2.68.11 2.96.72.79 1.15 1.79 1.15 3.01 0 4.3-2.62 5.25-5.12 5.53.4.35.76 1.03.76 2.08v3.09c0 .3.2.65.78.54A11.2 11.2 0 0 0 23.2 12C23.2 5.8 18.2.8 12 .8z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v11m0 0-4.5-4.5m4.5 4.5 4.5-4.5M4.5 19.5h15"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  <symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="6.5" rx="1.8"/><rect x="3.5" y="13.5" width="17" height="6.5" rx="1.8"/><path d="M7.5 7.25h.01M7.5 16.75h.01M11 7.25h6M11 16.75h6"/></symbol>
+  <symbol id="i-language" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5s-1.2 6-3.6 8.5c-2.4-2.5-3.6-5.3-3.6-8.5s1.2-6 3.6-8.5z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 19 6v5.6c0 4.2-2.9 7.9-7 9.2-4.1-1.3-7-5-7-9.2V6z"/><path d="m9 12 2.1 2.1L15.2 10"/></symbol>
+  <symbol id="i-rag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h4.5M13.5 3.5l5 5V11"/><path d="M8.5 9h4M8.5 12.5h2.5"/><circle cx="16.2" cy="16.2" r="3"/><path d="m18.4 18.4 2.4 2.4"/></symbol>
+  <symbol id="i-tune" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h9.5M18 7h2M4 17h4.5M13 17h7"/><circle cx="15.75" cy="7" r="2.25"/><circle cx="10.75" cy="17" r="2.25"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11.5" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></symbol>
+  <symbol id="i-cache" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v12c0 1.45 3.13 2.6 7 2.6s7-1.15 7-2.6V6M5 12c0 1.45 3.13 2.6 7 2.6s7-1.15 7-2.6"/></symbol>
+  <symbol id="i-idcard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.3 1.7-2 3-2s2.4.7 3 2M14.5 10h4M14.5 13h3"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5.5l-3 13"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19.5V11M10 19.5V5.5M15 19.5V13M20 19.5V8.5M3 20.5h18"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+</svg>
 <a class="skip" href="#main">Skip to content</a>
 
 <!-- Compact top bar (phones and tablets) -->
@@ -76,13 +129,13 @@
           <p class="role">AI Engineer · LLM inference & voice AI</p>
         </div>
       </div>
-      <p class="tagline">I make LLMs <span class="hl">pick up the phone.</span></p>
+      <p class="tagline">I build LLM and voice AI systems that handle <strong class="hl">millions of calls</strong> a day.</p>
       <canvas class="wave" id="wave" aria-hidden="true"></canvas>
 
       <dl class="kpis">
-        <div><dt>Voice-bot calls a day</dt><dd>2.5M</dd></div>
-        <div><dt>Lower inference cost</dt><dd>~40%</dd></div>
+        <div><dt>Lower LLM inference cost</dt><dd>~40%</dd></div>
         <div><dt>p95 time to first sentence</dt><dd>0.3 s</dd></div>
+        <div><dt>Faster audio encode</dt><dd>35×</dd></div>
       </dl>
 
       <nav class="toc toc-links" aria-label="Sections">
@@ -94,14 +147,14 @@
       </nav>
 
       <div class="side-actions">
-        <a class="btn btn-primary" href="assets/files/Nakshatra_Garg_Resume.pdf" download="Nakshatra_Garg_Resume.pdf"><svg class="dl-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19.5h16"/></svg>Résumé</a>
-        <button class="btn" id="copyBtn" type="button">Copy email</button>
+        <a class="btn btn-primary" href="assets/files/Nakshatra_Garg_Resume.pdf" download="Nakshatra_Garg_Resume.pdf"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Résumé</a>
+        <a class="btn" href="mailto:gargnakshatra11@gmail.com?subject=Hello%20Nakshatra"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Email me</a>
       </div>
-      <p class="side-email"><span id="email">gargnakshatra11@gmail.com</span></p>
       <div class="side-links">
-        <a href="https://www.linkedin.com/in/nakshatra-garg" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/nakshatra-garg/" target="_blank" rel="noopener">GitHub</a>
-        <button class="kbar-btn" id="kbarBtn" type="button" aria-label="Search and jump (Ctrl+K)" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><span class="kbar-hint"><kbd id="kbdMod">Ctrl</kbd><kbd>K</kbd></span></button>
+        <a class="icon-link" href="https://www.linkedin.com/in/nakshatra-garg" target="_blank" rel="noopener me" aria-label="LinkedIn profile" title="LinkedIn"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+        <a class="icon-link" href="https://github.com/nakshatra-garg/" target="_blank" rel="noopener me" aria-label="GitHub profile" title="GitHub"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg></a>
+        <a class="icon-link" href="mailto:gargnakshatra11@gmail.com" aria-label="Email" title="Email"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        <button class="kbar-btn" id="kbarBtn" type="button" aria-label="Search and jump (Ctrl+K)" aria-haspopup="dialog"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span class="kbar-hint"><kbd id="kbdMod">Ctrl</kbd><kbd>K</kbd></span></button>
       </div>
     </div>
   </aside>
@@ -109,8 +162,9 @@
   <main class="content" id="main">
     <!-- OVERVIEW -->
     <section class="sec" id="overview" aria-labelledby="h-overview">
+      <svg class="ov-art" data-parallax="-0.18" viewBox="0 0 420 220" aria-hidden="true" focusable="false"><defs><linearGradient id="ovg" x1="0" x2="1"><stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--tint-2)"/></linearGradient></defs><g fill="none" stroke="url(#ovg)" stroke-width="1.2"><polyline points="0,60.0 10,60.3 20,60.7 30,61.1 40,61.6 50,62.1 60,62.5 70,62.8 80,62.8 90,62.6 100,62.0 110,61.1 120,59.9 130,58.5 140,56.9 150,55.3 160,53.8 170,52.7 180,52.0 190,51.9 200,52.5 210,53.7 220,55.5 230,57.8 240,60.3 250,62.9 260,65.3 270,67.3 280,68.7 290,69.5 300,69.5 310,68.8 320,67.4 330,65.7 340,63.7 350,61.6 360,59.7 370,58.0 380,56.7 390,55.9 400,55.5 410,55.5 420,55.9" style="opacity:0.90"/><polyline points="0,76.9 10,77.4 20,77.9 30,78.4 40,78.8 50,78.9 60,78.9 70,78.4 80,77.6 90,76.4 100,74.8 110,73.0 120,71.0 130,69.1 140,67.4 150,66.2 160,65.6 170,65.9 180,67.0 190,69.0 200,71.8 210,75.2 220,78.9 230,82.6 240,85.9 250,88.5 260,90.3 270,90.9 280,90.5 290,88.9 300,86.5 310,83.4 320,80.0 330,76.5 340,73.3 350,70.7 360,68.8 370,67.6 380,67.3 390,67.6 400,68.6 410,69.9 420,71.5" style="opacity:0.79"/><polyline points="0,93.9 10,94.3 20,94.6 30,94.6 40,94.4 50,93.8 60,92.8 70,91.4 80,89.7 90,87.7 100,85.6 110,83.6 120,82.0 130,80.9 140,80.7 150,81.4 160,83.2 170,86.0 180,89.7 190,94.0 200,98.5 210,103.0 220,106.9 230,109.8 240,111.5 250,111.8 260,110.5 270,107.9 280,104.0 290,99.4 300,94.5 310,89.6 320,85.2 330,81.7 340,79.2 350,78.0 360,78.0 370,79.0 380,80.8 390,83.2 400,85.9 410,88.6 420,91.1" style="opacity:0.68"/><polyline points="0,110.1 10,110.0 20,109.7 30,109.0 40,107.9 50,106.5 60,104.8 70,102.9 80,100.9 90,99.1 100,97.7 110,97.0 120,97.2 130,98.4 140,100.7 150,104.2 160,108.5 170,113.4 180,118.5 190,123.4 200,127.5 210,130.3 220,131.6 230,131.2 240,128.9 250,124.9 260,119.6 270,113.4 280,106.9 290,100.7 300,95.2 310,91.0 320,88.4 330,87.4 340,88.0 350,90.0 360,93.2 370,97.0 380,101.2 390,105.2 400,108.8 410,111.6 420,113.7" style="opacity:0.57"/><polyline points="0,125.0 10,124.3 20,123.2 30,121.9 40,120.3 50,118.6 60,116.9 70,115.4 80,114.4 90,114.1 100,114.7 110,116.4 120,119.1 130,123.0 140,127.6 150,132.8 160,138.1 170,143.0 180,146.8 190,149.3 200,149.9 210,148.5 220,145.0 230,139.7 240,133.0 250,125.4 260,117.5 270,110.2 280,104.0 290,99.4 300,96.9 310,96.5 320,98.2 330,101.6 340,106.4 350,112.0 360,117.9 370,123.4 380,128.2 390,132.0 400,134.5 410,135.8 420,135.9" style="opacity:0.46"/><polyline points="0,138.8 10,137.7 20,136.3 30,134.9 40,133.5 50,132.4 60,131.8 70,131.9 80,132.8 90,134.8 100,137.8 110,141.8 120,146.5 130,151.6 140,156.7 150,161.1 160,164.5 170,166.3 180,166.0 190,163.6 200,159.0 210,152.5 220,144.5 230,135.7 240,126.8 250,118.8 260,112.2 270,107.7 280,105.8 290,106.4 300,109.5 310,114.7 320,121.4 330,129.0 340,136.7 350,143.8 360,149.8 370,154.3 380,157.1 390,158.2 400,157.7 410,155.9 420,153.2" style="opacity:0.35"/><polyline points="0,152.6 10,151.5 20,150.5 30,149.8 40,149.6 50,150.0 60,151.2 70,153.3 80,156.3 90,160.1 100,164.6 110,169.3 120,173.9 130,177.7 140,180.3 150,181.2 160,180.0 170,176.6 180,171.0 190,163.5 200,154.6 210,145.1 220,135.7 230,127.4 240,121.0 250,117.1 260,116.0 270,118.0 280,122.8 290,130.0 300,138.8 310,148.4 320,157.9 330,166.6 340,173.6 350,178.6 360,181.3 370,181.8 380,180.3 390,177.1 400,172.9 410,168.1 420,163.3" style="opacity:0.24"/></g></svg>
       <h2 class="sec-h" id="h-overview">Overview</h2>
-      <p class="summary">I build LLM and voice AI systems that run in production for enterprise clients at Rezo.ai: inference serving, guardrails, retrieval and real-time speech. I care about the numbers callers feel, like how fast the first sentence is spoken.</p>
+      <p class="summary">I build <strong>LLM and voice AI systems</strong> that run in <strong>production</strong> for enterprise clients at Rezo.ai: <strong>self-hosted inference</strong>, <strong>guardrails</strong>, <strong>RAG</strong> and <strong>real-time speech</strong>. I optimise for what callers actually feel, like how fast the first sentence is spoken.</p>
       <dl class="glance">
         <div><dt>Current role</dt><dd>Data Scientist / AI Associate, <b>Rezo.ai</b></dd></div>
         <div><dt>Experience</dt><dd>3+ years in production AI <span class="sub">Rezo.ai since Aug 2023</span></dd></div>
@@ -122,7 +176,7 @@
       <ul class="metrics" aria-label="More results">
         <li><b>35×</b><span>faster audio encode (CUDA graphs)</span></li>
         <li><b>~80%</b><span>precision@3 on hybrid RAG</span></li>
-        <li><b>98%</b><span>spoken language-ID accuracy</span></li>
+        <li><b>95%+</b><span>in-house language-ID accuracy</span></li>
         <li><b>20×</b><span>faster voice cloning</span></li>
       </ul>
     </section>
@@ -141,9 +195,9 @@
       </div>
       <div class="projects" id="workGrid">
         <article class="proj feature" data-cat="llm">
-          <div class="proj-top"><span class="proj-cat">LLM serving · flagship</span><span class="proj-metric">−40% cost</span></div>
-          <h3>Self-hosted LLM serving 2.5M voice-bot calls a day</h3>
-          <p>Replaced a third-party LLM API with an open-weight model on vLLM and NVIDIA H200s, behind a smart HAProxy router. Quality and latency matched or beat the API, and no caller data leaves our infrastructure.</p>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-server"/></svg></span><span class="proj-cat">LLM serving · flagship</span><span class="proj-metric">−40% cost</span></div>
+          <h3>Self-hosted LLM serving millions of voice-bot calls a day</h3>
+          <p>Replaced a third-party LLM API with an <strong>open-weight model on vLLM and NVIDIA H200s</strong> (~2.5M calls a day), behind a smart <strong>HAProxy router</strong>. <strong>~40% cheaper</strong>, quality and latency matched or beat the API, and <strong>no caller data leaves our infrastructure</strong>.</p>
           <div class="lat" id="latChart" aria-label="Production latency, drawn to scale from 0 to 2 seconds">
             <div class="lat-row"><span>First token</span><div class="lat-track"><i class="lat-bar" style="width:2.5%"></i></div><b>50 ms</b></div>
             <div class="lat-row"><span>First sentence p95</span><div class="lat-track"><i class="lat-bar" style="width:15%"></i></div><b>0.3 s</b></div>
@@ -195,58 +249,58 @@
           </div>
           <ul class="tags" aria-label="Tools"><li>vLLM</li><li>H200</li><li>HAProxy</li><li>Prometheus</li></ul>
         </article>
-        <article class="proj" data-cat="voice">
-          <div class="proj-top"><span class="proj-cat">Voice · language ID</span><span class="proj-metric">35× faster encode</span></div>
-          <h3>Real-time spoken language identification</h3>
-          <p>vLLM with an open multimodal model; CUDA graph capture cut audio encoding 35×. Serves 100+ concurrent callers at sub-300 ms p95 with 98% accuracy, rolled out from A100 to Blackwell at 2× capacity.</p>
-          <ul class="tags" aria-label="Tools"><li>CUDA graphs</li><li>Multimodal LLM</li><li>Multi-GPU</li></ul>
+        <article class="proj" data-cat="voice llm">
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-language"/></svg></span><span class="proj-cat">Voice · fine-tuning</span><span class="proj-metric">95%+ in production</span></div>
+          <h3>In-house spoken language identification</h3>
+          <p>Opened up a <strong>multimodal LLM</strong>, extracted its <strong>audio tower</strong> and <strong>fine-tuned it for language detection</strong>, then paired it with a <strong>semantic-similarity text classifier</strong>. The ensemble runs in production at <strong>95%+ accuracy</strong>. <strong>CUDA graph capture</strong> cut audio encoding <strong>35×</strong>; it serves <strong>100+ concurrent callers</strong> at <strong>sub-300 ms p95</strong>, scaled from A100 to Blackwell at <strong>2× capacity</strong>.</p>
+          <ul class="tags" aria-label="Tools"><li>Model surgery</li><li>Audio encoder fine-tuning</li><li>Text classifier</li><li>Ensemble</li><li>CUDA graphs</li></ul>
         </article>
         <article class="proj" data-cat="llm">
-          <div class="proj-top"><span class="proj-cat">LLM serving · safety</span><span class="proj-metric">5 layers</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="proj-cat">LLM serving · safety</span><span class="proj-metric">5 layers</span></div>
           <h3>Multi-layer guardrail stack</h3>
-          <p>PII redaction, reasoning-token leak suppression, repetition control, harmful-content filtering and system-prompt adherence, all inside the production latency budget.</p>
+          <p><strong>PII redaction</strong>, reasoning-token leak suppression, repetition control, harmful-content filtering and system-prompt adherence, all <strong>inside the production latency budget</strong>.</p>
           <ul class="tags" aria-label="Tools"><li>PII redaction</li><li>Streaming</li><li>Content filters</li></ul>
         </article>
         <article class="proj" data-cat="rag">
-          <div class="proj-top"><span class="proj-cat">RAG · retrieval</span><span class="proj-metric">~80% precision@3</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-rag"/></svg></span><span class="proj-cat">RAG · retrieval</span><span class="proj-metric">~80% precision@3</span></div>
           <h3>Hybrid-retrieval RAG for chat and voice bots</h3>
-          <p>BM25 plus dense vectors in Qdrant, then reranking, across multiple enterprise clients. Fewer hallucinations and higher flow completion, backed by an embedding service with two-tier caching.</p>
+          <p><strong>BM25 + dense vectors</strong> in Qdrant, then <strong>reranking</strong>, across multiple enterprise clients. <strong>Fewer hallucinations</strong> and higher flow completion, backed by an embedding service with <strong>two-tier caching</strong>.</p>
           <ul class="tags" aria-label="Tools"><li>BM25</li><li>Qdrant</li><li>Reranking</li><li>Redis</li></ul>
         </article>
         <article class="proj" data-cat="llm voice">
-          <div class="proj-top"><span class="proj-cat">Training</span><span class="proj-metric">Qwen3.5-4B · Gemma-4B</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-tune"/></svg></span><span class="proj-cat">Training</span><span class="proj-metric">LoRA + LLM-as-a-judge</span></div>
           <h3>LoRA fine-tuning and in-house ASR/TTS</h3>
-          <p>LoRA fine-tunes evaluated with LLM-as-a-judge and human review. I own data collection, curation and training pipelines for in-house speech recognition and synthesis.</p>
+          <p><strong>LoRA fine-tunes</strong> evaluated with <strong>LLM-as-a-judge</strong> and human review. I own data collection, curation and <strong>training pipelines</strong> for in-house speech recognition and synthesis.</p>
           <ul class="tags" aria-label="Tools"><li>LoRA / QLoRA</li><li>LLM-as-a-judge</li><li>ASR</li><li>TTS</li></ul>
         </article>
         <article class="proj" data-cat="voice">
-          <div class="proj-top"><span class="proj-cat">Voice · synthesis</span><span class="proj-metric">20 s → 1 s</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-mic"/></svg></span><span class="proj-cat">Voice · synthesis</span><span class="proj-metric">20 s → 1 s</span></div>
           <h3>Real-time voice cloning</h3>
-          <p>A headless, in-memory inference pipeline on RVC that made voice cloning fast enough for live calls.</p>
+          <p>A headless, <strong>in-memory inference pipeline</strong> on RVC that made voice cloning <strong>fast enough for live calls</strong>.</p>
           <ul class="tags" aria-label="Tools"><li>RVC</li><li>In-memory inference</li></ul>
         </article>
         <article class="proj" data-cat="voice rag">
-          <div class="proj-top"><span class="proj-cat">Voice · caching</span><span class="proj-metric">Synthesize once</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-cache"/></svg></span><span class="proj-cat">Voice · caching</span><span class="proj-metric">Synthesize once</span></div>
           <h3>Vector-similarity TTS cache</h3>
-          <p>Matches new bot utterances to semantically identical past audio, cutting redundant synthesis and TTS cost.</p>
+          <p>Matches new bot utterances to <strong>semantically identical past audio</strong>, cutting redundant synthesis and <strong>TTS cost</strong>.</p>
           <ul class="tags" aria-label="Tools"><li>BGE-M3</li><li>pgvector</li><li>Azure Blob</li></ul>
         </article>
         <article class="proj" data-cat="vision">
-          <div class="proj-top"><span class="proj-cat">Vision · KYC</span><span class="proj-metric">Aadhaar & PAN</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-idcard"/></svg></span><span class="proj-cat">Vision · KYC</span><span class="proj-metric">Aadhaar & PAN</span></div>
           <h3>ID-document OCR for a leading Indian bank</h3>
-          <p>Extraction from government ID documents powering production KYC. Earlier lifted OCR accuracy 15% by reworking detection-to-OCR and retraining against drift.</p>
+          <p>Extraction from government ID documents powering <strong>production KYC</strong>. Earlier lifted <strong>OCR accuracy 15%</strong> by reworking detection-to-OCR and retraining against drift.</p>
           <ul class="tags" aria-label="Tools"><li>Object detection</li><li>OCR</li></ul>
         </article>
         <article class="proj" data-cat="llm">
-          <div class="proj-top"><span class="proj-cat">Developer tooling</span><span class="proj-metric">Team-wide</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg></span><span class="proj-cat">Developer tooling</span><span class="proj-metric">Team-wide</span></div>
           <h3>LLM-powered code review</h3>
-          <p>Led an LLM code-review system that checks changes against engineering best practices.</p>
+          <p><strong>Led</strong> an LLM code-review system that checks changes against <strong>engineering best practices</strong> across teams.</p>
           <ul class="tags" aria-label="Tools"><li>LLM agents</li><li>Prompting</li></ul>
         </article>
         <article class="proj" data-cat="voice">
-          <div class="proj-top"><span class="proj-cat">Voice · analytics</span><span class="proj-metric">Post-call insight</span></div>
+          <div class="proj-top"><span class="proj-ico"><svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg></span><span class="proj-cat">Voice · analytics</span><span class="proj-metric">Post-call insight</span></div>
           <h3>Speech analytics and rudeness detection</h3>
-          <p>Call metrics (silence, interruptions, response latency, flow) plus an audio-feature rudeness classifier, served via Flask APIs.</p>
+          <p>Call metrics (silence, interruptions, response latency, flow) plus an <strong>audio-feature rudeness classifier</strong>, served via Flask APIs.</p>
           <ul class="tags" aria-label="Tools"><li>Audio features</li><li>Classification</li><li>Flask</li></ul>
         </article>
       </div>
@@ -259,16 +313,16 @@
         <li class="xp-item">
           <div class="xp-head"><h3>Data Scientist / AI Associate <span class="at">· Rezo.ai</span></h3><span class="when">May 2024 – present</span></div>
           <ul>
-            <li>Own the self-hosted LLM behind ~2.5M voice-bot calls a day; introduced TTFS as the voice latency metric.</li>
-            <li>Built the guardrail stack, language-ID service, hybrid RAG, TTS cache and real-time voice cloning.</li>
-            <li>Fine-tune LLMs with LoRA; own data and training pipelines for in-house ASR and TTS.</li>
+            <li><strong>Own the self-hosted LLM</strong> behind ~2.5M voice-bot calls a day; introduced <strong>TTFS</strong> as the voice latency metric.</li>
+            <li>Built an <strong>in-house language-ID model</strong> (fine-tuned LLM audio tower + text classifier, <strong>95%+ accuracy</strong>), the <strong>guardrail stack</strong>, <strong>hybrid RAG</strong>, TTS cache and real-time voice cloning.</li>
+            <li><strong>Fine-tune LLMs with LoRA</strong>; own data and training pipelines for in-house <strong>ASR and TTS</strong>.</li>
           </ul>
         </li>
         <li class="xp-item">
           <div class="xp-head"><h3>Data Science Intern <span class="at">· Rezo.ai</span></h3><span class="when">Aug 2023 – Apr 2024</span></div>
           <ul>
-            <li>Improved document OCR by upgrading and retraining the detection model; shipped Flask APIs with Swagger docs.</li>
-            <li>Designed speech-analytics metrics and a rudeness-detection dataset from audio features.</li>
+            <li>Improved <strong>document OCR</strong> by upgrading and retraining the detection model; shipped Flask APIs with Swagger docs.</li>
+            <li>Designed <strong>speech-analytics metrics</strong> and a rudeness-detection dataset from audio features.</li>
           </ul>
         </li>
         <li class="xp-item compact">
@@ -288,7 +342,7 @@
       <dl class="skills">
         <div><dt>LLM serving</dt><dd>vLLM · open-weight LLMs · streaming inference · TTFT/p95 tuning · CUDA graphs · multi-GPU (H200, Blackwell, A100, T4) · Ollama</dd></div>
         <div><dt>GenAI & NLP</dt><dd>RAG · BM25 + dense hybrid · reranking · BGE-M3 · LoRA/QLoRA · Hugging Face · LLM-as-a-judge · guardrails · multimodal LLMs · Claude</dd></div>
-        <div><dt>Speech & voice</dt><dd>ASR/STT · TTS · language ID · RVC voice cloning · SpeechBrain · Azure Speech · real-time voice bots</dd></div>
+        <div><dt>Speech & voice</dt><dd>ASR/STT · TTS · language ID (fine-tuned audio encoders) · RVC voice cloning · SpeechBrain · Azure Speech · real-time voice bots</dd></div>
         <div><dt>LLMOps</dt><dd>Docker · HAProxy · Prometheus · Redis · model-serving APIs · monitoring</dd></div>
         <div><dt>Languages & APIs</dt><dd>Python · FastAPI · Flask · WebSocket · REST · SQL</dd></div>
         <div><dt>Data & cloud</dt><dd>Qdrant · pgvector · FAISS · ChromaDB · MySQL · Azure (ML, AI Services, Speech, Blob) · AWS (EC2, S3, Bedrock)</dd></div>
@@ -327,7 +381,7 @@
     </section>
 
     <footer class="foot">
-      <p>Best way to reach me: <a href="mailto:gargnakshatra11@gmail.com">gargnakshatra11@gmail.com</a>. Always happy to connect.</p>
+      <p class="foot-cta"><span>Always happy to connect.</span><a class="btn btn-sm" href="mailto:gargnakshatra11@gmail.com?subject=Hello%20Nakshatra"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Email me</a><a class="icon-link" href="https://www.linkedin.com/in/nakshatra-garg" target="_blank" rel="noopener me" aria-label="LinkedIn profile"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg></a><a class="icon-link" href="https://github.com/nakshatra-garg/" target="_blank" rel="noopener me" aria-label="GitHub profile"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg></a></p>
       <p class="fine">© 2026 Nakshatra Garg · <a href="#top">Back to top</a></p>
     </footer>
   </main>

@@ -40,7 +40,7 @@
     } },
     { g: 'Actions', label: 'Ask my résumé (AI chat)', hint: 'questions about my work', run: () => window.portfolioChat?.open() },
     { g: 'Actions', label: 'Download résumé', hint: 'PDF', run: click('.side-actions a[download]') },
-    { g: 'Actions', label: 'Copy email address', hint: 'gargnakshatra11@gmail.com', run: click('#copyBtn') },
+    { g: 'Actions', label: 'Email me', hint: 'opens your mail app', run: () => { location.href = 'mailto:gargnakshatra11@gmail.com?subject=Hello%20Nakshatra'; } },
     { g: 'Actions', label: 'Open LinkedIn', hint: 'linkedin.com/in/nakshatra-garg', run: link('https://www.linkedin.com/in/nakshatra-garg') },
     { g: 'Actions', label: 'Open GitHub', hint: 'github.com/nakshatra-garg', run: link('https://github.com/nakshatra-garg/') },
   );

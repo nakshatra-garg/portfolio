@@ -15,7 +15,7 @@
     {
       "id": "llm-selfhosted",
       "title": "Self-hosted LLM serving 2.5M calls/day",
-      "text": "Nakshatra owns a self-hosted open-weight LLM serving about 2.5 million voice-bot calls per day in production on NVIDIA H200 GPUs with vLLM. It replaced a third-party LLM API. He built a smart LLM router on HAProxy to route requests. Results: inference costs reduced about 40%, external data-exposure risk eliminated, and quality and latency matched or beat the previous API."
+      "text": "Nakshatra owns a self-hosted open-weight LLM serving about 2.5 million voice-bot calls per day in production on NVIDIA H200 GPUs with vLLM. It replaced a third-party LLM API. He built a smart LLM router on HAProxy to route requests. Results: inference costs reduced about 40%, external data-exposure risk eliminated, and quality and latency matched or beat the previous API. The specific model names used in production are not disclosed."
     },
     {
       "id": "latency-ttfs",
@@ -29,8 +29,8 @@
     },
     {
       "id": "lang-id",
-      "title": "Voice language identification service",
-      "text": "Nakshatra deployed a GPU-accelerated spoken language-identification service (vLLM plus an open multimodal model) to production. He cut audio-encode latency 35x using CUDA graph capture and scaled it to 100+ concurrent callers at sub-300 ms p95 with 98% accuracy. He owned the APIs, observability and a multi-GPU rollout from A100 to NVIDIA Blackwell that doubled capacity. Earlier work on multilingual language detection covered 12 languages at 92% accuracy, and he has also built speaker identification."
+      "title": "In-house spoken language identification",
+      "text": "Nakshatra built the in-house spoken language-identification model used in production. He opened up the architecture of a multimodal LLM, extracted its audio tower (audio encoder) and fine-tuned it for language detection. He also trained a text-based classifier using semantic similarity, and paired the two into an ensemble that achieves over 95% accuracy in production. On the serving side, he cut audio-encode latency 35x using CUDA graph capture, scaled the service to 100+ concurrent callers at sub-300 ms p95, and owned the APIs, observability and a multi-GPU rollout from A100 to NVIDIA Blackwell that doubled capacity. Earlier multilingual language-detection work covered 12 languages at 92% accuracy, and he has also built speaker identification."
     },
     {
       "id": "rag",
@@ -45,7 +45,7 @@
     {
       "id": "finetuning",
       "title": "LoRA fine-tuning and in-house ASR/TTS",
-      "text": "Nakshatra fine-tuned Qwen3.5-4B and Gemma-4B with LoRA, evaluated with LLM-as-a-judge and human review. He currently owns data collection, curation and training pipelines for in-house ASR (speech-to-text) and TTS (text-to-speech) models, improving accuracy and naturalness on domain-specific call audio."
+      "text": "Nakshatra fine-tunes open-weight LLMs with LoRA, evaluated with LLM-as-a-judge and human review. He currently owns data collection, curation and training pipelines for in-house ASR (speech-to-text) and TTS (text-to-speech) models, improving accuracy and naturalness on domain-specific call audio. He also fine-tuned the audio tower extracted from a multimodal LLM for spoken language detection."
     },
     {
       "id": "voice-cloning",

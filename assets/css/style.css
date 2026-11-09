@@ -130,8 +130,8 @@ kbd { font: 500 .75rem var(--font-mono); padding: 2px 6px; border-radius: 6px; b
 .brand-mark.lg { width: 44px; height: 44px; border-radius: 12px; font-size: .9rem; }
 .who h1 { font-size: 1.5rem; letter-spacing: -0.03em; line-height: 1.15; }
 .role { font-size: var(--t-small); color: var(--muted); margin-top: 2px; }
-.tagline { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; letter-spacing: -0.035em; line-height: 1.12; }
-.tagline .hl { display: block; color: var(--accent); background: linear-gradient(90deg, var(--accent), var(--tint-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.tagline { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; text-wrap: balance; }
+.tagline .hl { font-weight: 700; color: var(--accent); background: linear-gradient(90deg, var(--accent), var(--tint-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 @media (prefers-contrast: more) { .tagline .hl { -webkit-text-fill-color: var(--accent); background: none; } }
 .wave { display: block; width: 100%; height: 36px; margin-top: -6px; }
 .kpis { margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
@@ -173,7 +173,7 @@ kbd { font: 500 .75rem var(--font-mono); padding: 2px 6px; border-radius: 6px; b
 @media (min-width: 1024px) { .mbar { display: none; } }
 
 /* ---------- Main column ---------- */
-.content { min-width: 0; padding-block: 0 56px; }
+.content { min-width: 0; padding-block: 0 56px; overflow-x: clip; }
 @media (min-width: 1024px) { .content { padding-block: 56px 64px; } }
 .sec { padding-block: 32px; border-top: 1px solid var(--line); }
 .sec:first-child { border-top: 0; padding-top: 4px; }
@@ -417,6 +417,53 @@ kbd { font: 500 .75rem var(--font-mono); padding: 2px 6px; border-radius: 6px; b
 .kbar-empty { padding: 18px 12px; color: var(--muted); font-size: var(--t-small); }
 .flash { animation: flash 1.4s ease-out; }
 @keyframes flash { 0%, 40% { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); } 100% { box-shadow: 0 0 0 0 transparent; } }
+
+
+/* ======================= v5: icons, emphasis, parallax ======================= */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ico { width: 1.1em; height: 1.1em; flex: none; }
+.btn .ico { width: 18px; height: 18px; }
+
+/* Emphasis: keywords and numbers stand out from secondary text */
+strong { font-weight: 600; color: var(--ink); }
+.summary strong { font-weight: 600; }
+.proj p strong, .xp-item li strong { color: var(--ink); }
+
+/* Icon links */
+.icon-link { display: inline-grid; place-items: center; width: var(--target); height: var(--target); border-radius: 12px; color: var(--muted); transition: color .15s ease, background .15s ease, transform 160ms var(--ease-out); }
+.icon-link .ico { width: 20px; height: 20px; }
+.icon-link:active { transform: scale(0.94); }
+@media (hover: hover) { .icon-link:hover { color: var(--accent); background: var(--accent-soft); } }
+.side-links { gap: 2px; }
+.side-links a::after { content: none; }
+
+/* Project icon tiles */
+.proj-top { align-items: center; }
+.proj-ico { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--accent); background: var(--accent-soft); flex: none; margin-right: 2px; }
+.proj-ico .ico { width: 19px; height: 19px; }
+.proj.feature .proj-ico { width: 40px; height: 40px; border-radius: 12px; color: #FFFFFF; background: linear-gradient(135deg, var(--accent), var(--tint-2)); }
+.proj.feature .proj-ico .ico { width: 22px; height: 22px; }
+.proj-cat { margin-right: auto; }
+
+/* Overview line art (decorative parallax layer) */
+#overview { position: relative; isolation: isolate; }
+.ov-art { position: absolute; z-index: -1; right: -24px; top: -36px; width: min(460px, 70%); height: auto; opacity: .55; pointer-events: none; }
+@media (max-width: 700px) { .ov-art { opacity: .18; width: 90%; top: -48px; } }
+
+/* Footer call to action */
+.foot-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.foot-cta span { margin-right: 6px; color: var(--ink); font-weight: 500; }
+.foot a.btn { color: var(--ink); text-decoration: none; }
+
+/* Parallax: JS sets --py on [data-parallax]; uses the independent `translate` property so it composes with scale/animations */
+[data-parallax] { translate: 0 var(--py, 0px); will-change: translate; }
+
+/* Project cards ease in as they scroll into view (scroll-driven, no JS; older browsers just show them) */
+@supports (animation-timeline: view()) {
+  .proj:not(.feature) { animation: card-in linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+  @keyframes card-in { from { opacity: 0; scale: .965; } }
+}
+@media (prefers-reduced-motion: reduce) { [data-parallax] { translate: none !important; } }
 
 /* ---------- Motion: one short entrance; nothing on scroll ---------- */
 .sidebar .side-inner > *, .content > .sec:first-child { animation: rise .5s var(--ease-out) both; }
