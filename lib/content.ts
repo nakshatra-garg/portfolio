@@ -194,18 +194,28 @@ export const skills = [
 ];
 
 export const education = [
-  { degree: "M.Tech, CSE (AI/ML)", school: "Vellore Institute of Technology · CGPA 8.9", when: "2022–24" },
-  { degree: "B.Tech, Information Technology", school: "College of Engineering Roorkee · CGPA 8.4", when: "2018–22" },
+  { level: "M.Tech", field: "Computer Science and Engineering", focus: "AI / ML", school: "Vellore Institute of Technology", years: "2022 – 2024", cgpa: 8.9 },
+  { level: "B.Tech", field: "Information Technology", focus: "", school: "College of Engineering Roorkee", years: "2018 – 2022", cgpa: 8.4 },
 ];
 
-export const publication = "Predictive Modeling of Crop Yield Using Deep Learning Based Transformer with Climate Change Effects";
+export const publication = {
+  title: "Predictive Modeling of Crop Yield Using Deep Learning Based Transformer with Climate Change Effects",
+  topics: ["Deep learning", "Transformers", "Climate change", "Crop yield"],
+};
 
-export const certifications = [
-  "IBM Applied AI Professional Certificate",
-  "Advanced Computer Vision with TensorFlow",
-  "Visual Analytics with Tableau",
-  "Google IT Support Professional Certificate",
+export type Cert = { name: string; issuer?: string; topic: string };
+
+/** Most relevant to AI engineering first. Only credentials listed on LinkedIn; issuers only where known. */
+export const certFeatured: Cert[] = [
+  { name: "IBM Applied AI Professional Certificate", issuer: "IBM", topic: "Applied AI" },
+  { name: "Advanced Computer Vision with TensorFlow", issuer: "DeepLearning.AI", topic: "Computer vision" },
 ];
+export const certMore: Cert[] = [
+  { name: "Visual Analytics with Tableau", topic: "Data visualisation" },
+  { name: "Programming Fundamentals", topic: "Programming" },
+  { name: "Google IT Support Professional Certificate", issuer: "Google", topic: "IT fundamentals" },
+];
+export const honors = ["Adzap Quiz"];
 
 export const languages = ["English, native or bilingual", "Hindi, native or bilingual"];
 

@@ -3,7 +3,8 @@ import { Marquee } from "@/components/Marquee";
 import { Flagship } from "@/components/Flagship";
 import { WorkRail } from "@/components/WorkRail";
 import { SectionTitle } from "@/components/Reveal";
-import { Overview, Experience, SkillsEducation, Writing } from "@/components/Sections";
+import { Overview, Experience, Skills, Writing } from "@/components/Sections";
+import { Education } from "@/components/Education";
 import { Story } from "@/components/Story";
 import { Closing } from "@/components/Closing";
 
@@ -20,7 +21,8 @@ export default function Home() {
       <WorkRail />
       <Story />
       <Experience />
-      <SkillsEducation />
+      <Skills />
+      <Education />
       <Writing />
       <Closing />
     </>

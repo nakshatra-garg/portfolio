@@ -1,6 +1,6 @@
 import type { IconName } from "@/lib/content";
 
-type Name = IconName | "mail" | "linkedin" | "github" | "download" | "search" | "chat" | "send" | "arrow" | "play" | "arrowDown";
+type Name = IconName | "mail" | "linkedin" | "github" | "download" | "search" | "chat" | "send" | "arrow" | "play" | "arrowDown" | "cap" | "award" | "book";
 
 const stroke: Partial<Record<Name, React.ReactNode>> = {
   mail: <><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.8 7 8.2 6 8.2-6" /></>,
@@ -19,6 +19,9 @@ const stroke: Partial<Record<Name, React.ReactNode>> = {
   cache: <><ellipse cx="12" cy="6" rx="7" ry="2.6" /><path d="M5 6v12c0 1.45 3.13 2.6 7 2.6s7-1.15 7-2.6V6M5 12c0 1.45 3.13 2.6 7 2.6s7-1.15 7-2.6" /></>,
   idcard: <><rect x="3" y="5" width="18" height="14" rx="2.5" /><circle cx="9" cy="11" r="2" /><path d="M6 16c.6-1.3 1.7-2 3-2s2.4.7 3 2M14.5 10h4M14.5 13h3" /></>,
   code: <path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5.5l-3 13" />,
+  cap: <><path d="M2.5 9.5 12 5l9.5 4.5L12 14z" /><path d="M6.5 11.8v4.2c0 1.2 2.5 2.7 5.5 2.7s5.5-1.5 5.5-2.7v-4.2M21.5 9.5V15" /></>,
+  award: <><circle cx="12" cy="9" r="5.5" /><path d="m8.8 13.6-1.3 6.9 4.5-2.4 4.5 2.4-1.3-6.9" /><path d="m10 9 1.4 1.4L14.2 7.6" /></>,
+  book: <><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" /><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 7.5h8M8 11h5" /></>,
   chart: <path d="M5 19.5V11M10 19.5V5.5M15 19.5V13M20 19.5V8.5M3 20.5h18" />,
 };
 

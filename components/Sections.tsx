@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Reveal, SectionTitle } from "./Reveal";
 import { Rich } from "./Rich";
-import { certifications, earlier, education, experience, glance, languages, publication, skills } from "@/lib/content";
+import { earlier, experience, glance, skills } from "@/lib/content";
 import { publishedPosts } from "@/lib/posts";
 
 const wrap = "mx-auto max-w-6xl px-5 sm:px-8";
@@ -65,10 +65,10 @@ export function Experience() {
   );
 }
 
-export function SkillsEducation() {
+export function Skills() {
   return (
     <section id="skills" aria-labelledby="skills-title" className={`${wrap} py-28`}>
-      <SectionTitle eyebrow="Skills & education" id="skills-title" title="The toolkit" />
+      <SectionTitle eyebrow="Skills" id="skills-title" title="The toolkit" />
       <Reveal>
         <dl className="grid border-t border-line">
           {skills.map((s) => (
@@ -79,27 +79,6 @@ export function SkillsEducation() {
           ))}
         </dl>
       </Reveal>
-      <div className="mt-14 grid gap-10 md:grid-cols-2">
-        <Reveal>
-          <h3 className="eyebrow mb-4">Education</h3>
-          <dl className="grid">
-            {education.map((e) => (
-              <div key={e.degree} className="flex justify-between gap-4 border-b border-line py-3">
-                <dt><span className="font-medium">{e.degree}</span><span className="block text-sm text-muted">{e.school}</span></dt>
-                <dd className="font-mono text-sm tabular-nums text-muted">{e.when}</dd>
-              </div>
-            ))}
-          </dl>
-          <h3 className="eyebrow mb-3 mt-8">Publication</h3>
-          <p className="font-medium leading-snug">{publication}</p>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <h3 className="eyebrow mb-4">Certifications</h3>
-          <ul className="grid gap-2 text-muted">{certifications.map((c) => <li key={c}>{c}</li>)}</ul>
-          <h3 className="eyebrow mb-3 mt-8">Languages</h3>
-          <ul className="grid gap-2 text-muted">{languages.map((l) => <li key={l}>{l}</li>)}</ul>
-        </Reveal>
-      </div>
     </section>
   );
 }

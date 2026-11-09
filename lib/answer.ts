@@ -82,6 +82,12 @@ const INTENTS: Intent[] = [
     sources: ["education", "publication"],
   },
   {
+    id: "certs",
+    patterns: [[/\bcertif|\bcertificat|credential|\bcourses?\b|\bhonou?rs?\b|\bawards?\b/, 4]],
+    answer: "Certifications: **IBM Applied AI Professional Certificate**, **Advanced Computer Vision with TensorFlow** (DeepLearning.AI), **Visual Analytics with Tableau**, **Programming Fundamentals** and the **Google IT Support Professional Certificate**. He also won the **Adzap Quiz**. His degrees and published research are listed under Education. [certs]",
+    sources: ["certs"],
+  },
+  {
     id: "contact",
     patterns: [[/\bcontact|reach|email|mail|hire|get in touch|linkedin|github|connect|resume|cv\b|phone|call him/, 4]],
     answer: `The best way to reach Nakshatra is email: **${EMAIL}**. He's also on **LinkedIn** (linkedin.com/in/nakshatra-garg) and **GitHub** (github.com/nakshatra-garg), and his résumé can be downloaded from this site. [contact]`,
