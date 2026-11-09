@@ -56,7 +56,7 @@ export function Palette() {
   const items = useMemo<Item[]>(() => [
     { group: "Sections", label: "Case study: self-hosted LLM", hint: "−40% cost", run: () => goSection("work") },
     { group: "Sections", label: "Selected work", hint: `${projects.length} projects`, run: () => goProject(projects[0].slug, 0) },
-    { group: "Sections", label: "How I work", hint: "measure, optimise, guard, ship", run: () => goSection("approach") },
+    { group: "Sections", label: "How I work", hint: "the self-hosting story", run: () => goSection("approach") },
     { group: "Sections", label: "Experience", hint: "Rezo.ai and earlier", run: () => goSection("experience") },
     { group: "Sections", label: "Skills & education", run: () => goSection("skills") },
     ...projects.map((p, i) => ({ group: "Projects", label: p.title, hint: p.metric, run: () => goProject(p.slug, i) })),

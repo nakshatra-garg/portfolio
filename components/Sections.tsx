@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Reveal, SectionTitle } from "./Reveal";
 import { Rich } from "./Rich";
-import { approach, certifications, earlier, education, experience, glance, languages, publication, skills } from "@/lib/content";
+import { certifications, earlier, education, experience, glance, languages, publication, skills } from "@/lib/content";
 import { publishedPosts } from "@/lib/posts";
 
 const wrap = "mx-auto max-w-6xl px-5 sm:px-8";
@@ -23,23 +23,6 @@ export function Overview() {
           ))}
         </dl>
       </Reveal>
-    </section>
-  );
-}
-
-export function Approach() {
-  return (
-    <section id="approach" aria-labelledby="approach-title" className={`${wrap} py-28`}>
-      <SectionTitle eyebrow="How I work" id="approach-title" title={<>Measure, optimise,<br />guard, <span className="grad-text">ship.</span></>} />
-      <ol className="grid border-t border-line">
-        {approach.map((a, i) => (
-          <Reveal as="li" key={a.n} delay={i * 0.05} className="group grid gap-2 border-b border-line py-7 md:grid-cols-[120px_1fr_1.3fr] md:items-baseline md:gap-8">
-            <span className="display-md text-4xl text-line transition-colors duration-300 group-hover:text-accent" aria-hidden="true">{a.n}</span>
-            <h3 className="display-md text-[clamp(1.35rem,2.4vw,1.9rem)]">{a.title}</h3>
-            <p className="text-muted"><Rich text={a.body} /></p>
-          </Reveal>
-        ))}
-      </ol>
     </section>
   );
 }

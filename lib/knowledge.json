@@ -14,7 +14,7 @@
     },
     {
       "id": "llm-selfhosted",
-      "title": "Self-hosted LLM serving 2.5M calls/day",
+      "title": "Self-hosted LLM serving millions of calls a day",
       "text": "Nakshatra owns a self-hosted open-weight LLM serving about 2.5 million voice-bot calls per day in production on NVIDIA H200 GPUs with vLLM. It replaced a third-party LLM API. He built a smart LLM router on HAProxy to route requests. Results: inference costs reduced about 40%, external data-exposure risk eliminated, and quality and latency matched or beat the previous API. The specific model names used in production are not disclosed."
     },
     {

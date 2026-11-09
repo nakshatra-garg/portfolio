@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Not part of the site bundle: Node helper scripts and the Cloudflare Worker.
+    "scripts/**",
+    "worker/**",
   ]),
 ]);
 

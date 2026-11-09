@@ -9,7 +9,7 @@ import { useModKey } from "@/lib/useMediaQuery";
 
 const sections = [
   { id: "work", label: "Work" },
-  { id: "approach", label: "Approach" },
+  { id: "approach", label: "How I work" },
   { id: "experience", label: "Experience" },
   ...(publishedPosts.length ? [{ id: "writing", label: "Writing" }] : []),
 ];

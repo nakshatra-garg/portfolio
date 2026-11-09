@@ -119,12 +119,46 @@ export const projects: Project[] = [
   },
 ];
 
-export const approach = [
-  { n: "01", title: "Measure what users feel", body: "Pick the metric that matches the experience, like **time to first sentence** for voice, and track p95/p99 live." },
-  { n: "02", title: "Self-host and optimise", body: "Serve open-weight models on **vLLM**, then cut latency with **CUDA graphs**, routing and caching." },
-  { n: "03", title: "Guard and evaluate", body: "**Guardrails** inside the latency budget, plus **LLM-as-a-judge** and human review before anything ships." },
-  { n: "04", title: "Ship and watch", body: "Multi-GPU rollouts with **Prometheus** dashboards, so regressions show up before callers notice." },
-];
+export type ChapterVisual = "pressure" | "measure" | "host" | "leak" | "shadow" | "result";
+
+/** "How I work", told through one real project: moving voice-bot traffic off a third-party LLM API. */
+export const story = {
+  eyebrow: "How I work",
+  title: "How we moved millions of calls off a third-party LLM API.",
+  intro: "One project, start to finish. It's the clearest picture of how I work: measure what users feel, build the boring safety rails, and never switch without proof.",
+  chapters: [
+    {
+      id: "why", kicker: "The breaking point", visual: "pressure" as ChapterVisual,
+      title: "Three problems that grew with every call",
+      body: "Our voice bots were running on a third-party LLM API. At **millions of calls a day**, three things kept growing: the **bill**, the **caller data leaving our infrastructure**, and the **outages and rate limits** we couldn't control.",
+    },
+    {
+      id: "measure", kicker: "Measure first", visual: "measure" as ChapterVisual,
+      title: "Decide what “fast” means for a caller",
+      body: "Before changing anything, I defined the number that matches what callers feel. First token was already quick, but a caller hears **sentences, not tokens**. So we track **time to first sentence (TTFS)** at p95 and p99, live on Prometheus.",
+    },
+    {
+      id: "host", kicker: "Build", visual: "host" as ChapterVisual,
+      title: "Self-host an open-weight model",
+      body: "An open-weight model on **vLLM** and **NVIDIA H200 GPUs**, behind a smart **HAProxy router** that spreads load across GPUs. Every request stays **inside our infrastructure**.",
+    },
+    {
+      id: "leak", kicker: "The turning point", visual: "leak" as ChapterVisual,
+      title: "The model said things it shouldn't",
+      body: "Early outputs **leaked the model's thinking tokens** and sometimes **repeated themselves**, which a caller would hear out loud. I built a **multi-layer guardrail stack** on the stream: thinking-token suppression, repetition control, PII redaction, content filtering and prompt adherence, all **inside the latency budget**.",
+    },
+    {
+      id: "shadow", kicker: "Prove it", visual: "shadow" as ChapterVisual,
+      title: "Shadow real calls before switching",
+      body: "We **mirrored live calls** to the new model while the old API still answered callers. Its replies were never used, only **compared on quality and latency**. We switched only once the self-hosted model **matched or beat** the API.",
+    },
+    {
+      id: "result", kicker: "The result", visual: "result" as ChapterVisual,
+      title: "Cheaper, faster to speak, and ours",
+      body: "**~40% lower inference cost**, quality and latency **matched or beat** the old API, **no caller data leaves** our infrastructure, and the first sentence is ready in **0.3 s at p95**.",
+    },
+  ],
+};
 
 export const experience = [
   {
@@ -180,5 +214,5 @@ export const askChips = [
   { label: "Latency", icon: "chart" as IconName, q: "What is TTFS and why does it matter?" },
   { label: "Voice AI", icon: "language" as IconName, q: "How does he do spoken language identification?" },
   { label: "RAG", icon: "rag" as IconName, q: "What RAG work has he done?" },
-  { label: "Stack", icon: "tune" as IconName, q: "What is his tech stack?" },
+  { label: "Tech stack", icon: "tune" as IconName, q: "What is his tech stack?" },
 ];
