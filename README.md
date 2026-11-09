@@ -1,69 +1,52 @@
-# Nakshatra Garg · personal site
+# Nakshatra Garg · portfolio
 
-Static portfolio site. Plain HTML, CSS and JavaScript, with no build step and no dependencies.
+Personal site built with **Next.js 16** (App Router, static export), **Tailwind CSS 4**, **Motion** and **MDX**.
+Deployed to **GitHub Pages** by GitHub Actions on every push to `main`.
 
-```
-index.html              the page
-404.html                "Call dropped." error page
-assets/css/style.css    all styles (colour tokens at the top, light + dark)
-assets/js/main.js       demo call carousel, waveform, filters, copy-email, nav hairline
-assets/js/playground.js TTFT vs TTFS latency playground
-assets/js/chat.js       "Ask my résumé" chat (live via worker, or offline BM25 search)
-assets/js/palette.js    Ctrl/⌘+K command palette
-
-assets/data/knowledge.json  the facts the chat answers from (edit this when your CV changes)
-assets/files/           public résumé PDF (phone number removed)
-worker/                 Cloudflare Worker that powers live chat with Claude
-assets/favicon.svg      icon
-assets/og.png           1200x630 link preview for LinkedIn / X / WhatsApp
-robots.txt, sitemap.xml, llms.txt  SEO (llms.txt is a plain-text profile for AI search engines)
-scripts/set_domain.py   points the site at your domain + writes CNAME
-scripts/make_images.js  regenerates og.png and apple-touch-icon.png (needs Playwright)
-.github/workflows/      auto-deploy to GitHub Pages on every push to main
-```
-
-## Preview locally
+## Run locally
 
 ```bash
-python -m http.server 8000
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # static site in ./out
 ```
 
-Then open http://localhost:8000.
+## Where things live
 
-## Go live (GitHub Pages + your domain)
+| Path | What |
+| --- | --- |
+| `lib/content.ts` | **All page copy**: headline, stats, projects, experience, skills. Wrap words in `**double asterisks**` to bold them. |
+| `lib/posts.ts` | Blog post list. `draft: true` builds the page for review but keeps it unlisted, out of the sitemap and `noindex`. |
+| `content/writing/*.mdx` | Blog post bodies (Markdown + JSX). |
+| `lib/knowledge.json` | Facts the "Ask my résumé" chat answers from (the Worker reads it too). |
+| `components/` | Hero, flagship case study + latency playground, horizontal project rail, chat, ⌘K palette, closing band. |
+| `app/` | Pages, metadata/SEO, `sitemap.xml`, `robots.txt`, `llms.txt`. |
+| `public/` | Résumé PDF (phone number removed), favicon, social preview image. |
+| `worker/` | Optional Cloudflare Worker that powers live chat with Claude. |
 
-1. Set the domain (replaces the `__SITE_URL__` placeholders and writes `CNAME`):
-   ```bash
-   python scripts/set_domain.py naksh.ai
-   ```
-2. Push to the `main` branch of your GitHub repo.
-3. On GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-4. **Settings → Pages → Custom domain**: enter the domain, then tick **Enforce HTTPS** once the certificate is issued.
-5. At your registrar, add DNS records:
-   - Apex domain (`naksh.ai`): four `A` records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-     (optionally `AAAA` to `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`)
+## Publishing a blog post
+
+1. Edit `content/writing/<slug>.mdx` (remove the `TODO` notes).
+2. In `lib/posts.ts`, set `draft: false`.
+3. Push. The post appears on the homepage, `/writing`, the sitemap and `llms.txt`.
+
+## Deploying (GitHub Pages)
+
+One-time: **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+After that every push to `main` builds and deploys. The workflow reads your Pages URL from GitHub,
+so links and SEO tags are correct both at `https://<user>.github.io/portfolio/` and on a custom domain.
+
+### Custom domain
+
+1. **Settings → Pages → Custom domain**: enter the domain, save, then tick **Enforce HTTPS** when offered.
+2. At your registrar:
+   - Apex domain: four `A` records to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
    - `www`: a `CNAME` record to `<your-github-username>.github.io`
+3. Re-run the latest **Deploy to GitHub Pages** workflow (Actions tab) so the site rebuilds with the new URL.
 
-DNS can take a few minutes to a few hours to propagate.
+## Live AI chat (optional)
 
-## Editing content
-
-All text lives in `index.html`. Projects are the `<article class="card">` blocks in the Work section;
-the `data-cat` attribute (`llm`, `voice`, `rag`, `vision`, space-separated) controls which filter shows them.
-Colours are tokens at the top of `assets/css/style.css`.
-
-## "Ask my résumé" chat
-
-The chat works in two modes:
-
-- **Offline search (default).** With no backend configured, it searches `assets/data/knowledge.json`
-  in the browser (BM25) and replies with the matching passages. Free, nothing to deploy.
-- **Live (Claude).** Answers are written by Claude, grounded only in `knowledge.json`, streamed,
-  and cite the passages they use. If the backend is down, the chat falls back to offline search.
-
-### Turn on live mode (about 5 minutes)
-
-You need a free Cloudflare account and an Anthropic API key (console.anthropic.com).
+Without a backend the chat runs as offline search over `lib/knowledge.json`. For answers written by Claude:
 
 ```bash
 cd worker
@@ -73,17 +56,9 @@ npx wrangler secret put ANTHROPIC_API_KEY
 npx wrangler deploy
 ```
 
-`wrangler deploy` prints a URL like `https://nakshatra-portfolio-chat.<you>.workers.dev`.
+Then add your site's address to `ALLOWED_ORIGINS` in `worker/wrangler.toml` (redeploy), and in GitHub:
+**Settings → Secrets and variables → Actions → Variables → New variable** `CHAT_ENDPOINT` = the Worker URL. Push or re-run the workflow.
 
-1. Put that URL in `index.html`: `<meta name="chat-endpoint" content="https://...workers.dev">`.
-2. In `worker/wrangler.toml`, make sure `ALLOWED_ORIGINS` lists your site's address
-   (e.g. `https://naksh.ai,https://www.naksh.ai`), then run `npx wrangler deploy` again.
-3. Push the site.
+## Social preview image
 
-**Cost and abuse controls:** answers are capped at 1,024 tokens, run at low effort, and each visitor
-is limited to 8 questions a minute. The ~2.7k-token profile is sent as a cached system prompt.
-`MODEL` in `wrangler.toml` defaults to `claude-opus-5-5`; switch to `claude-haiku-5-5` to cut cost
-by roughly 40x. Set a monthly spend limit in the Anthropic Console as a backstop.
-
-**Keeping it accurate:** the chat only knows what is in `knowledge.json`. When your CV changes,
-update that file (both the site and the worker read it), then redeploy the worker.
+`node scripts/make_images.js` regenerates `public/og.png` and `public/apple-touch-icon.png` (needs Playwright).

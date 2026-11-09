@@ -1,0 +1,184 @@
+// All page content lives here. Wrap words in **double asterisks** to bold them.
+
+export type IconName =
+  | "server" | "language" | "shield" | "rag" | "tune" | "mic" | "cache" | "idcard" | "code" | "chart";
+
+export type Project = {
+  slug: string;
+  cat: ("llm" | "voice" | "rag" | "vision")[];
+  label: string;
+  title: string;
+  metric: string;
+  desc: string;
+  tags: string[];
+  icon: IconName;
+};
+
+export const person = {
+  name: "Nakshatra Garg",
+  first: "Nakshatra",
+  last: "Garg",
+  role: "AI Engineer",
+  focus: "LLM inference & voice AI",
+  location: "Noida, India",
+  headline: "I build LLM and voice AI systems that handle **millions of calls** a day.",
+  summary:
+    "I build **LLM and voice AI systems** that run in **production** for enterprise clients at Rezo.ai: **self-hosted inference**, **guardrails**, **RAG** and **real-time speech**. I optimise for what callers actually feel, like how fast the first sentence is spoken.",
+};
+
+export const stats = [
+  { value: "~40%", label: "lower LLM inference cost" },
+  { value: "0.3 s", label: "p95 time to first sentence" },
+  { value: "35×", label: "faster audio encode" },
+  { value: "95%+", label: "in-house language-ID accuracy" },
+];
+
+export const glance = [
+  { k: "Current role", v: "Data Scientist / AI Associate, Rezo.ai" },
+  { k: "Experience", v: "3+ years in production AI" },
+  { k: "Focus", v: "LLM inference · Voice AI · RAG" },
+  { k: "Core stack", v: "Python, vLLM, FastAPI, Qdrant, Docker" },
+  { k: "Education", v: "M.Tech CSE (AI/ML), VIT · 8.9" },
+];
+
+export const ticker = [
+  "vLLM", "NVIDIA H200 · Blackwell", "CUDA graphs", "LoRA / QLoRA", "Qdrant", "BM25 + dense retrieval",
+  "Reranking", "Guardrails", "ASR · TTS", "FastAPI", "Redis", "Prometheus", "HAProxy", "Docker", "pgvector", "LLM-as-a-judge",
+];
+
+export const flagship = {
+  label: "LLM serving · flagship",
+  title: "Self-hosted LLM serving millions of voice-bot calls a day",
+  metric: "−40% cost",
+  desc:
+    "Replaced a third-party LLM API with an **open-weight model on vLLM and NVIDIA H200s** (~2.5M calls a day), behind a smart **HAProxy router**. **~40% cheaper**, quality and latency matched or beat the API, and **no caller data leaves our infrastructure**.",
+  tags: ["vLLM", "H200", "HAProxy", "Prometheus"],
+  latency: [
+    { label: "First token", value: 50, shown: "50 ms" },
+    { label: "First sentence p95", value: 300, shown: "0.3 s" },
+    { label: "First sentence p99", value: 600, shown: "0.6 s" },
+    { label: "Full reply p95", value: 1500, to: 2000, shown: "1.5–2 s" },
+  ],
+  note: "I made **time to first sentence** our voice latency metric: TTS can't speak until a sentence exists, so first-token time undersells the wait.",
+};
+
+export const projects: Project[] = [
+  {
+    slug: "language-id", cat: ["voice", "llm"], label: "Voice · fine-tuning", icon: "language",
+    title: "In-house spoken language identification", metric: "95%+ in production",
+    desc: "Opened up a **multimodal LLM**, extracted its **audio tower** and **fine-tuned it for language detection**, then paired it with a **semantic-similarity text classifier**. **CUDA graph capture** cut audio encoding **35×**; serves **100+ concurrent callers** at **sub-300 ms p95**.",
+    tags: ["Model surgery", "Audio encoder fine-tuning", "Ensemble", "CUDA graphs"],
+  },
+  {
+    slug: "guardrails", cat: ["llm"], label: "LLM serving · safety", icon: "shield",
+    title: "Multi-layer guardrail stack", metric: "5 layers",
+    desc: "**PII redaction**, reasoning-token leak suppression, repetition control, harmful-content filtering and system-prompt adherence, all **inside the production latency budget**.",
+    tags: ["PII redaction", "Streaming", "Content filters"],
+  },
+  {
+    slug: "rag", cat: ["rag"], label: "RAG · retrieval", icon: "rag",
+    title: "Hybrid-retrieval RAG for chat and voice bots", metric: "~80% precision@3",
+    desc: "**BM25 + dense vectors** in Qdrant, then **reranking**, across multiple enterprise clients. **Fewer hallucinations** and higher flow completion, backed by an embedding service with **two-tier caching**.",
+    tags: ["BM25", "Qdrant", "Reranking", "Redis"],
+  },
+  {
+    slug: "training", cat: ["llm", "voice"], label: "Training", icon: "tune",
+    title: "LoRA fine-tuning and in-house ASR/TTS", metric: "LoRA + LLM-as-a-judge",
+    desc: "**LoRA fine-tunes** evaluated with **LLM-as-a-judge** and human review. I own data collection, curation and **training pipelines** for in-house speech recognition and synthesis.",
+    tags: ["LoRA / QLoRA", "LLM-as-a-judge", "ASR", "TTS"],
+  },
+  {
+    slug: "voice-cloning", cat: ["voice"], label: "Voice · synthesis", icon: "mic",
+    title: "Real-time voice cloning", metric: "20 s → 1 s",
+    desc: "A headless, **in-memory inference pipeline** on RVC that made voice cloning **fast enough for live calls**.",
+    tags: ["RVC", "In-memory inference"],
+  },
+  {
+    slug: "tts-cache", cat: ["voice", "rag"], label: "Voice · caching", icon: "cache",
+    title: "Vector-similarity TTS cache", metric: "Synthesize once",
+    desc: "Matches new bot utterances to **semantically identical past audio**, cutting redundant synthesis and **TTS cost**.",
+    tags: ["BGE-M3", "pgvector", "Azure Blob"],
+  },
+  {
+    slug: "ocr", cat: ["vision"], label: "Vision · KYC", icon: "idcard",
+    title: "ID-document OCR for a leading Indian bank", metric: "Aadhaar & PAN",
+    desc: "Extraction from government ID documents powering **production KYC**. Earlier lifted **OCR accuracy 15%** by reworking detection-to-OCR and retraining against drift.",
+    tags: ["Object detection", "OCR"],
+  },
+  {
+    slug: "code-review", cat: ["llm"], label: "Developer tooling", icon: "code",
+    title: "LLM-powered code review", metric: "Team-wide",
+    desc: "**Led** an LLM code-review system that checks changes against **engineering best practices** across teams.",
+    tags: ["LLM agents", "Prompting"],
+  },
+  {
+    slug: "speech-analytics", cat: ["voice"], label: "Voice · analytics", icon: "chart",
+    title: "Speech analytics and rudeness detection", metric: "Post-call insight",
+    desc: "Call metrics (silence, interruptions, response latency, flow) plus an **audio-feature rudeness classifier**, served via Flask APIs.",
+    tags: ["Audio features", "Classification", "Flask"],
+  },
+];
+
+export const approach = [
+  { n: "01", title: "Measure what users feel", body: "Pick the metric that matches the experience, like **time to first sentence** for voice, and track p95/p99 live." },
+  { n: "02", title: "Self-host and optimise", body: "Serve open-weight models on **vLLM**, then cut latency with **CUDA graphs**, routing and caching." },
+  { n: "03", title: "Guard and evaluate", body: "**Guardrails** inside the latency budget, plus **LLM-as-a-judge** and human review before anything ships." },
+  { n: "04", title: "Ship and watch", body: "Multi-GPU rollouts with **Prometheus** dashboards, so regressions show up before callers notice." },
+];
+
+export const experience = [
+  {
+    when: "May 2024 – present", role: "Data Scientist / AI Associate", org: "Rezo.ai",
+    points: [
+      "**Own the self-hosted LLM** behind ~2.5M voice-bot calls a day; introduced **TTFS** as the voice latency metric.",
+      "Built an **in-house language-ID model** (fine-tuned LLM audio tower + text classifier, **95%+ accuracy**), the **guardrail stack**, **hybrid RAG**, TTS cache and real-time voice cloning.",
+      "**Fine-tune LLMs with LoRA**; own data and training pipelines for in-house **ASR and TTS**.",
+    ],
+  },
+  {
+    when: "Aug 2023 – Apr 2024", role: "Data Science Intern", org: "Rezo.ai",
+    points: [
+      "Improved **document OCR** by upgrading and retraining the detection model; shipped Flask APIs with Swagger docs.",
+      "Designed **speech-analytics metrics** and a rudeness-detection dataset from audio features.",
+    ],
+  },
+];
+
+export const earlier = [
+  { org: "vel.ai", what: "X-ray object detection; time-series forecasting for crypto and energy data", when: "Dec 2021 – May 2022" },
+  { org: "Technocolabs", what: "End-to-end intraday-trading ML project with an LSTM, deployed on Flask", when: "May – Jun 2021" },
+  { org: "TheSmartBridge", what: "Customer-care chatbot on IBM Watson grounded in a user manual", when: "May – Jun 2020" },
+];
+
+export const skills = [
+  { k: "LLM serving", v: "vLLM · open-weight LLMs · streaming inference · TTFT/p95 tuning · CUDA graphs · multi-GPU (H200, Blackwell, A100, T4) · Ollama" },
+  { k: "GenAI & NLP", v: "RAG · BM25 + dense hybrid · reranking · BGE-M3 · LoRA/QLoRA · Hugging Face · LLM-as-a-judge · guardrails · multimodal LLMs · Claude" },
+  { k: "Speech & voice", v: "ASR/STT · TTS · language ID (fine-tuned audio encoders) · RVC voice cloning · SpeechBrain · Azure Speech · real-time voice bots" },
+  { k: "LLMOps", v: "Docker · HAProxy · Prometheus · Redis · model-serving APIs · monitoring" },
+  { k: "Languages & APIs", v: "Python · FastAPI · Flask · WebSocket · REST · SQL" },
+  { k: "Data & cloud", v: "Qdrant · pgvector · FAISS · ChromaDB · MySQL · Azure (ML, AI Services, Speech, Blob) · AWS (EC2, S3, Bedrock)" },
+];
+
+export const education = [
+  { degree: "M.Tech, CSE (AI/ML)", school: "Vellore Institute of Technology · CGPA 8.9", when: "2022–24" },
+  { degree: "B.Tech, Information Technology", school: "College of Engineering Roorkee · CGPA 8.4", when: "2018–22" },
+];
+
+export const publication = "Predictive Modeling of Crop Yield Using Deep Learning Based Transformer with Climate Change Effects";
+
+export const certifications = [
+  "IBM Applied AI Professional Certificate",
+  "Advanced Computer Vision with TensorFlow",
+  "Visual Analytics with Tableau",
+  "Google IT Support Professional Certificate",
+];
+
+export const languages = ["English, native or bilingual", "Hindi, native or bilingual"];
+
+export const askChips = [
+  { label: "Projects", icon: "server" as IconName, q: "What production LLM systems has he built?" },
+  { label: "Latency", icon: "chart" as IconName, q: "What is TTFS and why does it matter?" },
+  { label: "Voice AI", icon: "language" as IconName, q: "How does he do spoken language identification?" },
+  { label: "RAG", icon: "rag" as IconName, q: "What RAG work has he done?" },
+  { label: "Stack", icon: "tune" as IconName, q: "What is his tech stack?" },
+];

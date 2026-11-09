@@ -1,0 +1,46 @@
+{/* DRAFT. Review before publishing: set draft: false in lib/posts.ts.
+    TODO notes below mark places where your own details would make it stronger. */}
+
+When we replaced a third-party LLM API with a self-hosted model for our voice bots, the first latency number everyone asked about was **time to first token (TTFT)**. Ours ended up at about **50 ms**. It's a great number. It's also nearly useless for a phone call.
+
+## A caller doesn't hear tokens
+
+In a chat UI, the first token is the first thing a user sees, so TTFT maps directly onto perceived speed. Voice is different. Between the LLM and the caller's ear sits a **text-to-speech (TTS)** engine, and TTS needs something it can actually say. A few tokens like "Sure, I" don't make a sentence it can speak naturally.
+
+So the moment that matters is when the **first complete sentence** exists and can be handed to TTS. That's what I started measuring as **time to first sentence (TTFS)**.
+
+> TTFT tells you how fast the model starts. TTFS tells you how fast the caller hears something.
+
+## What the numbers look like
+
+Our production budget for voice-bot replies, tracked live on Prometheus dashboards:
+
+| Metric | Value |
+| --- | --- |
+| Time to first token | 50 ms |
+| Time to first sentence (p95) | 0.3 s |
+| Time to first sentence (p99) | 0.6 s |
+| Full response (p95) | 1.5–2 s |
+
+The gap between 50 ms and 300 ms is the part TTFT hides. Everything that affects how quickly the *first sentence* finishes lives in that gap: generation speed, how long the opening sentence is, and any post-processing that has to run before text goes to TTS.
+
+{/* TODO: one or two lines on how you detect the sentence boundary in the stream, if you're happy to share it. */}
+
+## Why the metric changes decisions
+
+Optimising for TTFS pushes you towards different choices than optimising for TTFT:
+
+- **Speak at the first sentence, not the full reply.** Streaming the reply to TTS sentence by sentence means the caller hears the first sentence while the rest is still being generated. Waiting for the full reply would add the whole 1.5–2 s to every turn.
+- **Short opening sentences win.** A model that opens with "Sure, I can check that." starts speaking far sooner than one that opens with a long preamble, even at identical tokens per second.
+- **Guardrails have to fit inside the budget.** PII redaction, repetition control and content filtering all run on the stream. They're only acceptable if TTFS stays within budget with them switched on.
+- **p99 matters as much as p95.** A voice call has no loading spinner. The slow tail is what callers remember, so we watch p99 TTFS alongside p95.
+
+{/* TODO: a concrete example of a change you made because TTFS was off target (prompt change, routing, caching, GPU change) and the before/after. */}
+
+## Try it yourself
+
+The [latency demo on my homepage](/#work) simulates this: one pipeline speaks at the first full sentence, the other waits for the whole reply. Drag the sliders for time to first token and generation speed, and watch how little TTFT changes what the caller actually hears.
+
+## Takeaway
+
+If you're building voice AI, put **time to first sentence** on your dashboard next to TTFT, and track its p95 and p99. It's the number that matches what callers feel, and it changes which optimisations are worth doing.

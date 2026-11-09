@@ -2,7 +2,7 @@
 // Run: node scripts/make_images.js   (needs Playwright with Chromium)
 const { chromium } = require('playwright');
 const path = require('path');
-const out = (f) => path.join(__dirname, '..', 'assets', f);
+const out = (f) => path.join(__dirname, '..', 'public', f);
 
 const fonts = '';
 const bars = Array.from({ length: 64 }, (_, i) => {

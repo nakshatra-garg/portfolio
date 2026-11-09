@@ -15,21 +15,36 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - id: pages
+        uses: actions/configure-pages@v5
+      - run: npm ci
+      - name: Build static site
+        run: npm run build
+        env:
+          # Filled in by GitHub: "" and your domain once a custom domain is set,
+          # "/portfolio" and https://<user>.github.io/portfolio before that.
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # Optional: set a repository variable CHAT_ENDPOINT to your Cloudflare Worker URL to turn on live chat.
+          NEXT_PUBLIC_CHAT_ENDPOINT: ${{ vars.CHAT_ENDPOINT }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - name: Package site
-        run: |
-          mkdir _site
-          cp -r index.html 404.html robots.txt sitemap.xml llms.txt .nojekyll assets _site/
-          [ -f CNAME ] && cp CNAME _site/ || true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

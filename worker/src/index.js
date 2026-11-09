@@ -1,7 +1,7 @@
 // "Ask my résumé" backend: grounds Claude in the same knowledge.json the site uses,
 // streams the answer back to the browser as simple server-sent events.
 import Anthropic from "@anthropic-ai/sdk";
-import knowledge from "../../assets/data/knowledge.json";
+import knowledge from "../../lib/knowledge.json";
 
 const MAX_TURNS = 8;          // conversation turns kept per request
 const MAX_CHARS = 600;        // per user message
