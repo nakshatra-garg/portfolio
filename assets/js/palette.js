@@ -17,26 +17,30 @@
   const link = (href) => () => { const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.click(); };
 
   const items = [
-    { g: 'Sections', label: 'Latency: anatomy of a reply', hint: '#latency', run: go('#latency') },
-    { g: 'Sections', label: 'Latency playground', hint: 'TTFT vs TTFS demo', run: go('#playground') },
-    { g: 'Sections', label: 'Selected work', hint: '#work', run: go('#work') },
-    { g: 'Sections', label: 'Stack', hint: '#stack', run: go('#stack') },
-    { g: 'Sections', label: 'Journey', hint: 'experience & education', run: go('#journey') },
-    { g: 'Sections', label: 'Contact', hint: '#contact', run: go('#contact') },
+    { g: 'Sections', label: 'Overview', hint: 'summary & key facts', run: go('#overview') },
+    { g: 'Sections', label: 'Selected work', hint: '10 projects', run: go('#work') },
+    { g: 'Sections', label: 'Experience', hint: 'Rezo.ai and earlier', run: go('#experience') },
+    { g: 'Sections', label: 'Skills', hint: 'LLM, voice, RAG, infra', run: go('#skills') },
+    { g: 'Sections', label: 'Education & more', hint: 'degrees, publication, certifications', run: go('#education') },
   ];
-  // Every project card becomes a jump target (shows "All" filter first so the card is visible).
-  document.querySelectorAll('#workGrid .card').forEach((card) => {
+  // Every project becomes a jump target (shows "All" first so the card is visible).
+  document.querySelectorAll('#workGrid .proj').forEach((card) => {
     const title = card.querySelector('h3')?.textContent.trim();
-    const metric = card.querySelector('.metric')?.textContent.trim();
+    const metric = card.querySelector('.proj-metric')?.textContent.trim();
     items.push({ g: 'Projects', label: title, hint: metric, run: () => {
       if (card.hidden) document.getElementById('f-all')?.click();
       card.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(() => flash(card), 350);
     } });
   });
   items.push(
+    { g: 'Actions', label: 'Try the latency demo', hint: 'TTFT vs TTFS', run: () => {
+      const b = document.getElementById('demoToggle');
+      if (b?.getAttribute('aria-expanded') !== 'true') b?.click();
+      document.getElementById('playground')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } },
     { g: 'Actions', label: 'Ask my résumé (AI chat)', hint: 'questions about my work', run: () => window.portfolioChat?.open() },
-    { g: 'Actions', label: 'Download résumé', hint: 'PDF', run: click('.hero-actions a[download]') },
-    { g: 'Actions', label: 'Copy email address', hint: 'gargnakshatra11@gmail.com', run: () => { go('#contact')(); click('#copyBtn')(); } },
+    { g: 'Actions', label: 'Download résumé', hint: 'PDF', run: click('.side-actions a[download]') },
+    { g: 'Actions', label: 'Copy email address', hint: 'gargnakshatra11@gmail.com', run: click('#copyBtn') },
     { g: 'Actions', label: 'Open LinkedIn', hint: 'linkedin.com/in/nakshatra-garg', run: link('https://www.linkedin.com/in/nakshatra-garg') },
     { g: 'Actions', label: 'Open GitHub', hint: 'github.com/nakshatra-garg', run: link('https://github.com/nakshatra-garg/') },
   );

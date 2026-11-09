@@ -2,30 +2,130 @@
   "person": "Nakshatra Garg",
   "updated": "2026-11-08",
   "chunks": [
-    { "id": "summary", "title": "Professional summary", "text": "Nakshatra Garg is a Data Scientist and AI Engineer based in Noida, Uttar Pradesh, India, with 3+ years building production LLM and voice AI systems for enterprise clients. He owns a self-hosted open-weight LLM on vLLM and NVIDIA H200 GPUs serving about 2.5 million voice-bot calls per day, which replaced a third-party LLM API and cut inference costs by about 40% at 0.3 s p95 time-to-first-sentence. He works hands-on across LLM inference optimization, guardrails, hybrid-retrieval RAG, LoRA fine-tuning, LLM evaluation and real-time ASR/TTS, from data and training to APIs, observability and multi-GPU production rollout. Tagline: I make LLMs pick up the phone." },
-    { "id": "role-current", "title": "Current role at Rezo.ai", "text": "Since May 2024 Nakshatra has been a Data Scientist / AI Associate at Rezo.ai in Noida, India, working across the full stack of voice and language AI. Before that he was a Data Science Intern at Rezo.ai from August 2023 to April 2024, so he has been at Rezo.ai for over three years in total." },
-    { "id": "llm-selfhosted", "title": "Self-hosted LLM serving 2.5M calls/day", "text": "Nakshatra owns a self-hosted open-weight LLM serving about 2.5 million voice-bot calls per day in production on NVIDIA H200 GPUs with vLLM. It replaced a third-party LLM API. He built a smart LLM router on HAProxy to route requests. Results: inference costs reduced about 40%, external data-exposure risk eliminated, and quality and latency matched or beat the previous API." },
-    { "id": "latency-ttfs", "title": "Time-to-First-Sentence latency metric", "text": "Nakshatra introduced Time-to-First-Sentence (TTFS) as the primary voice latency metric instead of time-to-first-token (TTFT), because text-to-speech cannot start speaking until a full sentence exists. Production numbers: 50 ms TTFT, 0.3 s p95 and 0.6 s p99 TTFS, and 1.5 to 2 s p95 full-response latency, tracked on real-time Prometheus dashboards." },
-    { "id": "guardrails", "title": "Multi-layer guardrail stack", "text": "Nakshatra designed a multi-layer guardrail and post-processing stack over the LLM serving layer: PII redaction, reasoning/thinking-token leak suppression, repetition control, harmful-content filtering and system-prompt instruction adherence, all within the production latency budget." },
-    { "id": "lang-id", "title": "Voice language identification service", "text": "Nakshatra deployed a GPU-accelerated spoken language-identification service (vLLM plus an open multimodal model) to production. He cut audio-encode latency 35x using CUDA graph capture and scaled it to 100+ concurrent callers at sub-300 ms p95 with 98% accuracy. He owned the APIs, observability and a multi-GPU rollout from A100 to NVIDIA Blackwell that doubled capacity. Earlier work on multilingual language detection covered 12 languages at 92% accuracy, and he has also built speaker identification." },
-    { "id": "rag", "title": "Hybrid-retrieval RAG pipelines", "text": "Nakshatra built production hybrid-retrieval RAG pipelines (BM25 plus dense vector search in Qdrant plus reranking) for LLM chatbots and voice bots across multiple enterprise clients, reaching about 80% precision@3, reducing hallucinations and improving flow completion rates. They are backed by an embedding-extraction service with two-tier caching (Redis plus Qdrant)." },
-    { "id": "tts-cache", "title": "Vector-similarity TTS cache", "text": "Nakshatra designed a vector-similarity TTS cache using BGE-M3 embeddings, pgvector, Redis and Azure Blob Storage. It matches new bot utterances to semantically identical previously synthesized audio, eliminating redundant audio synthesis and cutting TTS costs for enterprise voice bots." },
-    { "id": "finetuning", "title": "LoRA fine-tuning and in-house ASR/TTS", "text": "Nakshatra fine-tuned Qwen3.5-4B and Gemma-4B with LoRA, evaluated with LLM-as-a-judge and human review. He currently owns data collection, curation and training pipelines for in-house ASR (speech-to-text) and TTS (text-to-speech) models, improving accuracy and naturalness on domain-specific call audio." },
-    { "id": "voice-cloning", "title": "Real-time voice cloning", "text": "Nakshatra developed a real-time voice cloning system on RVC with a custom headless, in-memory inference pipeline, reducing latency 20x, from 20 seconds to about 1 second, for real-time speech synthesis." },
-    { "id": "ocr-kyc", "title": "ID document OCR for KYC", "text": "Nakshatra built and deployed an OCR system extracting data from Indian government ID documents (Aadhaar and PAN) for a leading Indian bank, powering production KYC and document verification. As an intern he improved OCR accuracy by optimizing a multi-stage pipeline (object detection to OCR), upgrading the detection model, retraining on new data to handle data drift, and refining pre- and post-processing. The resume reports a 15% accuracy gain; LinkedIn describes detection improving by 25%." },
-    { "id": "code-review", "title": "LLM-powered code review system", "text": "Nakshatra led the development of an LLM-powered code review system that enforces best practices across engineering teams." },
-    { "id": "speech-analytics", "title": "Speech analytics and rudeness detection", "text": "Nakshatra designed speech analytics metrics for agent-customer calls (conversational flow, silence duration, interruption frequency, response latency) using Python pipelines over transcripts and audio metadata. He engineered a custom dataset from audio features to classify rudeness in calls and built ML-based rudeness detection for post-call insights. He also created Flask APIs documented with Swagger." },
-    { "id": "skills-llm", "title": "Skills: LLM serving and inference", "text": "LLM serving and inference skills: vLLM, self-hosted open-weight LLMs, streaming inference, latency optimization (TTFT, p95), CUDA graphs, multi-GPU deployment, GPU inference on NVIDIA H200, Blackwell, A100 and T4, and Ollama." },
-    { "id": "skills-genai", "title": "Skills: Generative AI and NLP", "text": "Generative AI and NLP skills: Retrieval-Augmented Generation (RAG), hybrid retrieval (BM25 plus dense vectors), reranking, embeddings (BGE-M3), LoRA and QLoRA fine-tuning, Hugging Face Transformers, prompt engineering, LLM evaluation (LLM-as-a-judge, human evaluation, precision@k), guardrails (PII redaction, content filtering), multimodal LLMs, agentic AI, and Anthropic Claude." },
-    { "id": "skills-voice", "title": "Skills: Speech and voice AI", "text": "Speech and voice AI skills: ASR/STT, TTS, spoken language identification, voice cloning (RVC), SpeechBrain, Azure Speech Services, and real-time voice bots." },
-    { "id": "skills-infra", "title": "Skills: LLMOps, infrastructure, languages and data", "text": "LLMOps and infrastructure: Docker, HAProxy, Prometheus, Redis, model-serving APIs, production monitoring, OCR. Programming and APIs: Python (primary language), FastAPI, Flask, WebSocket, REST APIs, SQL. Databases and vector search: Qdrant, PostgreSQL with pgvector, FAISS, ChromaDB, MySQL. Cloud: Azure (Azure ML, AI Services, Speech, Blob Storage, Compute) and AWS (EC2, S3, Bedrock). Also computer vision." },
-    { "id": "exp-velai", "title": "Data Science Intern at vel.ai", "text": "From December 2021 to May 2022 Nakshatra was a Data Science Intern at vel.ai. He improved object detection models to detect medical conditions in X-ray images, developed time-series models to predict cryptocurrencies and oil and energy data, collected and maintained data assets, and built baseline AI models." },
-    { "id": "exp-technocolabs", "title": "Data Science Intern at Technocolabs", "text": "From May to June 2021 Nakshatra was a Data Science Intern at Technocolabs, working in a team on an end-to-end project called Machine Learning in Intraday Trading: exploratory data analysis, model building and evaluation, and deployment with Flask. He developed an LSTM model to predict Microsoft stock prices." },
-    { "id": "exp-smartbridge", "title": "AI Summer Intern at TheSmartBridge", "text": "From May to June 2020 Nakshatra was an AI summer intern at TheSmartBridge, where he built a customer-care chatbot on IBM Cloud that answers user queries, trained on a user manual with the Smart Document Understanding feature of IBM Watson Discovery." },
-    { "id": "education", "title": "Education", "text": "Nakshatra holds an M.Tech in Computer Science and Engineering with a specialization (minor) in AI and ML from Vellore Institute of Technology (VIT Vellore), August 2022 to May 2024, CGPA 8.9/10. He holds a B.Tech in Information Technology from College of Engineering Roorkee, August 2018 to June 2022, CGPA 8.4/10." },
-    { "id": "publication", "title": "Research publication", "text": "During his M.Tech at VIT, Nakshatra published research titled Predictive Modeling of Crop Yield Using Deep Learning Based Transformer with Climate Change Effects, predicting the effects of climate change on crop yields using deep learning." },
-    { "id": "certs", "title": "Certifications and awards", "text": "Certifications: IBM Applied AI Professional Certificate, Advanced Computer Vision with TensorFlow, Visual Analytics with Tableau, Programming Fundamentals, and Google IT Support Professional Certificate. Honors: Adzap Quiz." },
-    { "id": "languages", "title": "Spoken languages", "text": "Nakshatra speaks English and Hindi at native or bilingual proficiency." },
-    { "id": "contact", "title": "Contact", "text": "The best way to reach Nakshatra is email: gargnakshatra11@gmail.com. LinkedIn: linkedin.com/in/nakshatra-garg. GitHub: github.com/nakshatra-garg. His resume can be downloaded from this website. He says he is always happy to connect and open to conversations about LLM inference, voice AI and production RAG." }
+    {
+      "id": "summary",
+      "title": "Professional summary",
+      "text": "Nakshatra Garg is a Data Scientist and AI Engineer based in Noida, Uttar Pradesh, India, with 3+ years building production LLM and voice AI systems for enterprise clients. He owns a self-hosted open-weight LLM on vLLM and NVIDIA H200 GPUs serving about 2.5 million voice-bot calls per day, which replaced a third-party LLM API and cut inference costs by about 40% at 0.3 s p95 time-to-first-sentence. He works hands-on across LLM inference optimization, guardrails, hybrid-retrieval RAG, LoRA fine-tuning, LLM evaluation and real-time ASR/TTS, from data and training to APIs, observability and multi-GPU production rollout. Tagline: I make LLMs pick up the phone."
+    },
+    {
+      "id": "role-current",
+      "title": "Current role at Rezo.ai",
+      "text": "Since May 2024 Nakshatra has been a Data Scientist / AI Associate at Rezo.ai in Noida, India, working across the full stack of voice and language AI. Before that he was a Data Science Intern at Rezo.ai from August 2023 to April 2024, so he has been at Rezo.ai for over three years in total."
+    },
+    {
+      "id": "llm-selfhosted",
+      "title": "Self-hosted LLM serving 2.5M calls/day",
+      "text": "Nakshatra owns a self-hosted open-weight LLM serving about 2.5 million voice-bot calls per day in production on NVIDIA H200 GPUs with vLLM. It replaced a third-party LLM API. He built a smart LLM router on HAProxy to route requests. Results: inference costs reduced about 40%, external data-exposure risk eliminated, and quality and latency matched or beat the previous API."
+    },
+    {
+      "id": "latency-ttfs",
+      "title": "Time-to-First-Sentence latency metric",
+      "text": "Nakshatra introduced Time-to-First-Sentence (TTFS) as the primary voice latency metric instead of time-to-first-token (TTFT), because text-to-speech cannot start speaking until a full sentence exists. Production numbers: 50 ms TTFT, 0.3 s p95 and 0.6 s p99 TTFS, and 1.5 to 2 s p95 full-response latency, tracked on real-time Prometheus dashboards."
+    },
+    {
+      "id": "guardrails",
+      "title": "Multi-layer guardrail stack",
+      "text": "Nakshatra designed a multi-layer guardrail and post-processing stack over the LLM serving layer: PII redaction, reasoning/thinking-token leak suppression, repetition control, harmful-content filtering and system-prompt instruction adherence, all within the production latency budget."
+    },
+    {
+      "id": "lang-id",
+      "title": "Voice language identification service",
+      "text": "Nakshatra deployed a GPU-accelerated spoken language-identification service (vLLM plus an open multimodal model) to production. He cut audio-encode latency 35x using CUDA graph capture and scaled it to 100+ concurrent callers at sub-300 ms p95 with 98% accuracy. He owned the APIs, observability and a multi-GPU rollout from A100 to NVIDIA Blackwell that doubled capacity. Earlier work on multilingual language detection covered 12 languages at 92% accuracy, and he has also built speaker identification."
+    },
+    {
+      "id": "rag",
+      "title": "Hybrid-retrieval RAG pipelines",
+      "text": "Nakshatra built production hybrid-retrieval RAG pipelines (BM25 plus dense vector search in Qdrant plus reranking) for LLM chatbots and voice bots across multiple enterprise clients, reaching about 80% precision@3, reducing hallucinations and improving flow completion rates. They are backed by an embedding-extraction service with two-tier caching (Redis plus Qdrant)."
+    },
+    {
+      "id": "tts-cache",
+      "title": "Vector-similarity TTS cache",
+      "text": "Nakshatra designed a vector-similarity TTS cache using BGE-M3 embeddings, pgvector, Redis and Azure Blob Storage. It matches new bot utterances to semantically identical previously synthesized audio, eliminating redundant audio synthesis and cutting TTS costs for enterprise voice bots."
+    },
+    {
+      "id": "finetuning",
+      "title": "LoRA fine-tuning and in-house ASR/TTS",
+      "text": "Nakshatra fine-tuned Qwen3.5-4B and Gemma-4B with LoRA, evaluated with LLM-as-a-judge and human review. He currently owns data collection, curation and training pipelines for in-house ASR (speech-to-text) and TTS (text-to-speech) models, improving accuracy and naturalness on domain-specific call audio."
+    },
+    {
+      "id": "voice-cloning",
+      "title": "Real-time voice cloning",
+      "text": "Nakshatra developed a real-time voice cloning system on RVC with a custom headless, in-memory inference pipeline, reducing latency 20x, from 20 seconds to about 1 second, for real-time speech synthesis."
+    },
+    {
+      "id": "ocr-kyc",
+      "title": "ID document OCR for KYC",
+      "text": "Nakshatra built and deployed an OCR system extracting data from Indian government ID documents (Aadhaar and PAN) for a leading Indian bank, powering production KYC and document verification. As an intern he improved OCR accuracy by optimizing a multi-stage pipeline (object detection to OCR), upgrading the detection model, retraining on new data to handle data drift, and refining pre- and post-processing. The resume reports a 15% accuracy gain; LinkedIn describes detection improving by 25%."
+    },
+    {
+      "id": "code-review",
+      "title": "LLM-powered code review system",
+      "text": "Nakshatra led the development of an LLM-powered code review system that enforces best practices across engineering teams."
+    },
+    {
+      "id": "speech-analytics",
+      "title": "Speech analytics and rudeness detection",
+      "text": "Nakshatra designed speech analytics metrics for agent-customer calls (conversational flow, silence duration, interruption frequency, response latency) using Python pipelines over transcripts and audio metadata. He engineered a custom dataset from audio features to classify rudeness in calls and built ML-based rudeness detection for post-call insights. He also created Flask APIs documented with Swagger."
+    },
+    {
+      "id": "skills-llm",
+      "title": "Skills: LLM serving and inference",
+      "text": "LLM serving and inference skills: vLLM, self-hosted open-weight LLMs, streaming inference, latency optimization (TTFT, p95), CUDA graphs, multi-GPU deployment, GPU inference on NVIDIA H200, Blackwell, A100 and T4, and Ollama."
+    },
+    {
+      "id": "skills-genai",
+      "title": "Skills: Generative AI and NLP",
+      "text": "Generative AI and NLP skills: Retrieval-Augmented Generation (RAG), hybrid retrieval (BM25 plus dense vectors), reranking, embeddings (BGE-M3), LoRA and QLoRA fine-tuning, Hugging Face Transformers, prompt engineering, LLM evaluation (LLM-as-a-judge, human evaluation, precision@k), guardrails (PII redaction, content filtering), multimodal LLMs, agentic AI, and Anthropic Claude."
+    },
+    {
+      "id": "skills-voice",
+      "title": "Skills: Speech and voice AI",
+      "text": "Speech and voice AI skills: ASR/STT, TTS, spoken language identification, voice cloning (RVC), SpeechBrain, Azure Speech Services, and real-time voice bots."
+    },
+    {
+      "id": "skills-infra",
+      "title": "Skills: LLMOps, infrastructure, languages and data",
+      "text": "LLMOps and infrastructure: Docker, HAProxy, Prometheus, Redis, model-serving APIs, production monitoring, OCR. Programming and APIs: Python (primary language), FastAPI, Flask, WebSocket, REST APIs, SQL. Databases and vector search: Qdrant, PostgreSQL with pgvector, FAISS, ChromaDB, MySQL. Cloud: Azure (Azure ML, AI Services, Speech, Blob Storage, Compute) and AWS (EC2, S3, Bedrock). Also computer vision."
+    },
+    {
+      "id": "exp-velai",
+      "title": "Data Science Intern at vel.ai",
+      "text": "From December 2021 to May 2022 Nakshatra was a Data Science Intern at vel.ai. He improved object detection models to detect medical conditions in X-ray images, developed time-series models to predict cryptocurrencies and oil and energy data, collected and maintained data assets, and built baseline AI models."
+    },
+    {
+      "id": "exp-technocolabs",
+      "title": "Data Science Intern at Technocolabs",
+      "text": "From May to June 2021 Nakshatra was a Data Science Intern at Technocolabs, working in a team on an end-to-end project called Machine Learning in Intraday Trading: exploratory data analysis, model building and evaluation, and deployment with Flask. He developed an LSTM model to predict Microsoft stock prices."
+    },
+    {
+      "id": "exp-smartbridge",
+      "title": "AI Summer Intern at TheSmartBridge",
+      "text": "From May to June 2020 Nakshatra was an AI summer intern at TheSmartBridge, where he built a customer-care chatbot on IBM Cloud that answers user queries, trained on a user manual with the Smart Document Understanding feature of IBM Watson Discovery."
+    },
+    {
+      "id": "education",
+      "title": "Education",
+      "text": "Nakshatra holds an M.Tech in Computer Science and Engineering with a specialization (minor) in AI and ML from Vellore Institute of Technology (VIT Vellore), August 2022 to May 2024, CGPA 8.9/10. He holds a B.Tech in Information Technology from College of Engineering Roorkee, August 2018 to June 2022, CGPA 8.4/10."
+    },
+    {
+      "id": "publication",
+      "title": "Research publication",
+      "text": "During his M.Tech at VIT, Nakshatra published research titled Predictive Modeling of Crop Yield Using Deep Learning Based Transformer with Climate Change Effects, predicting the effects of climate change on crop yields using deep learning."
+    },
+    {
+      "id": "certs",
+      "title": "Certifications and awards",
+      "text": "Certifications: IBM Applied AI Professional Certificate, Advanced Computer Vision with TensorFlow, Visual Analytics with Tableau, Programming Fundamentals, and Google IT Support Professional Certificate. Honors: Adzap Quiz."
+    },
+    {
+      "id": "languages",
+      "title": "Spoken languages",
+      "text": "Nakshatra speaks English and Hindi at native or bilingual proficiency."
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "text": "The best way to reach Nakshatra is email: gargnakshatra11@gmail.com. LinkedIn: linkedin.com/in/nakshatra-garg. GitHub: github.com/nakshatra-garg. His resume can be downloaded from this website. He says he is always happy to connect."
+    }
   ]
 }

@@ -1,132 +1,130 @@
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Demo call carousel ---------- */
-  const calls = [
-    { caller: 'Mera EMI kab due hai?', inTags: [['acc','lang-id: hi-IN · 98%'],['','ASR → LLM']],
-      bot: 'Aapka agla EMI 5 December ko due hai. Kya main reminder set kar doon?', outTags: [['ok','TTFS 0.28 s'],['','guardrails ✓']] },
-    { caller: 'Can I change the delivery address on my order?', inTags: [['acc','lang-id: en-IN · 99%'],['','RAG: 3 chunks']],
-      bot: 'Yes, I can update it right now. Which address should I use?', outTags: [['ok','TTFS 0.31 s'],['','precision@3 hit']] },
-    { caller: 'My card number is <span class="redact">4111 2222 3333</span> 4444', inTags: [['acc','PII redacted'],['','guardrail layer 1']],
-      bot: "Thanks. I've masked that for your safety. Let me check the card ending 4444.", outTags: [['ok','TTFS 0.29 s'],['','no data leaves infra']] },
-  ];
-  const body = document.getElementById('callBody');
-  const dotsEl = document.getElementById('dots');
-  const timer = document.getElementById('timer');
-  let idx = 0, secs = 7, cycle;
-  const chipHTML = (tags, end) => `<div class="chips"${end ? ' style="justify-content:flex-end"' : ''}>${tags.map(([c,t]) => `<span class="chip ${c}">${t}</span>`).join('')}</div>`;
-  function render(i) {
-    const c = calls[i];
-    body.innerHTML = `<div class="bubble caller">${c.caller}</div>${chipHTML(c.inTags)}<div class="bubble bot">${c.bot}</div>${chipHTML(c.outTags, true)}`;
-    [...dotsEl.children].forEach((d, j) => { d.classList.toggle('on', j === i); d.setAttribute('aria-selected', j === i); });
-  }
-  calls.forEach((_, i) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', `Example call ${i + 1}`);
-    b.addEventListener('click', () => { go(i); restart(); });
-    dotsEl.appendChild(b);
-  });
-  function go(i) {
-    idx = i;
-    if (reduce) { render(i); return; }
-    body.classList.add('fade');
-    setTimeout(() => { render(i); body.classList.remove('fade'); }, 350);
-  }
-  function restart() { clearInterval(cycle); if (!reduce) cycle = setInterval(() => go((idx + 1) % calls.length), 6500); }
-  render(0); restart();
-  setInterval(() => { secs++; timer.textContent = `${String(Math.floor(secs / 60)).padStart(2,'0')}:${String(secs % 60).padStart(2,'0')}`; }, 1000);
-
-  /* ---------- Voice waveform ---------- */
+  /* ---------- Sidebar waveform (small, quiet, reacts to the pointer) ---------- */
   const cv = document.getElementById('wave');
-  const ctx = cv.getContext('2d');
-  let W = 0, H = 0, mouseX = -1, t = 0;
-  function size() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = W * dpr; cv.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  function accent() {
-    const cs = getComputedStyle(document.documentElement);
-    return [cs.getPropertyValue('--accent').trim() || '#1A66DE', cs.getPropertyValue('--tint-2').trim() || '#12A4A0'];
-  }
-  let col = accent();
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { col = accent(); });
-  new MutationObserver(() => { col = accent(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const gap = 5, bw = 2, n = Math.floor(W / gap);
-    const grad = ctx.createLinearGradient(0, 0, W, 0);
-    grad.addColorStop(0, col[0]); grad.addColorStop(1, col[1]);
-    ctx.fillStyle = grad;
-    for (let i = 0; i < n; i++) {
-      const x = i * gap + (W - n * gap) / 2;
-      const p = i / n;
-      // speech-like envelope: syllable bursts riding a slower phrase contour
-      const phrase = 0.5 + 0.5 * Math.sin(p * 7.0 - t * 0.6);
-      const syll = Math.abs(Math.sin(p * 46 + t * 2.2) * Math.sin(p * 13 - t * 1.3));
-      let a = 0.06 + 0.7 * phrase * syll;
-      if (mouseX >= 0) a += 0.6 * Math.exp(-Math.pow((x - mouseX) / 70, 2));
-      const h = Math.max(3, Math.min(1, a) * H * 0.92);
-      ctx.globalAlpha = 0.18 + 0.62 * Math.min(1, a);
-      const y = (H - h) / 2;
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(x, y, bw, h, 2); else ctx.rect(x, y, bw, h);
-      ctx.fill();
+  if (cv) {
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, mouseX = -1, t = 0, col = colours(), running = false;
+    function colours() {
+      const cs = getComputedStyle(document.documentElement);
+      return [cs.getPropertyValue('--accent').trim() || '#1A66DE', cs.getPropertyValue('--tint-2').trim() || '#12A4A0'];
     }
-    ctx.globalAlpha = 1;
+    function size() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = cv.clientWidth; H = cv.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const gap = 4, bw = 2, n = Math.floor(W / gap);
+      const grad = ctx.createLinearGradient(0, 0, W, 0);
+      grad.addColorStop(0, col[0]); grad.addColorStop(1, col[1]);
+      ctx.fillStyle = grad;
+      for (let i = 0; i < n; i++) {
+        const x = i * gap, p = i / n;
+        const phrase = 0.5 + 0.5 * Math.sin(p * 6 - t * 0.6);
+        const syll = Math.abs(Math.sin(p * 38 + t * 2) * Math.sin(p * 11 - t * 1.2));
+        let a = 0.08 + 0.75 * phrase * syll;
+        if (mouseX >= 0) a += 0.5 * Math.exp(-Math.pow((x - mouseX) / 40, 2));
+        const h = Math.max(2, Math.min(1, a) * H);
+        ctx.globalAlpha = 0.25 + 0.75 * Math.min(1, a);
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x, (H - h) / 2, bw, h, 1); else ctx.rect(x, (H - h) / 2, bw, h);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+    function loop() { if (!running) return; t += 0.012; draw(); requestAnimationFrame(loop); }
+    size(); draw();
+    window.addEventListener('resize', () => { size(); draw(); });
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { col = colours(); draw(); });
+    cv.addEventListener('pointermove', (e) => { mouseX = e.clientX - cv.getBoundingClientRect().left; if (reduce) draw(); });
+    cv.addEventListener('pointerleave', () => { mouseX = -1; if (reduce) draw(); });
+    // Only animate while visible and the tab is active.
+    if (!reduce && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => {
+        const was = running; running = e.isIntersecting && !document.hidden;
+        if (running && !was) requestAnimationFrame(loop);
+      }).observe(cv);
+      document.addEventListener('visibilitychange', () => {
+        const was = running; running = !document.hidden && cv.getBoundingClientRect().bottom > 0;
+        if (running && !was) requestAnimationFrame(loop);
+      });
+    }
   }
-  function loop() { t += 0.009; draw(); requestAnimationFrame(loop); }
-  size(); draw();
-  window.addEventListener('resize', () => { size(); draw(); });
-  cv.parentElement.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mouseX = e.clientX - r.left; if (reduce) draw(); });
-  cv.parentElement.addEventListener('pointerleave', () => { mouseX = -1; if (reduce) draw(); });
-  if (!reduce) requestAnimationFrame(loop);
 
-  /* ---------- Latency bars replay when scrolled into view ---------- */
+  /* ---------- Latency bars grow once when first seen ---------- */
   const lat = document.getElementById('latChart');
-  if ('IntersectionObserver' in window && !reduce) {
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { lat.classList.add('lat-play'); io.disconnect(); }
-    }), { threshold: 0.4 });
+  if (lat && 'IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { lat.classList.add('lat-play'); io.disconnect(); } }, { threshold: 0.5 });
     io.observe(lat);
   }
 
-  /* ---------- Work filters ---------- */
-  const cards = [...document.querySelectorAll('#workGrid .card')];
+  /* ---------- Latency demo (playground) opens on demand ---------- */
+  const demoBtn = document.getElementById('demoToggle');
+  const demo = document.getElementById('demoWrap');
+  if (demoBtn && demo) {
+    const label = demoBtn.lastChild;
+    demoBtn.addEventListener('click', () => {
+      const open = demo.hidden;
+      demo.hidden = !open;
+      demoBtn.setAttribute('aria-expanded', String(open));
+      label.textContent = open ? 'Hide the latency demo' : 'Try the latency demo';
+      if (open) window.dispatchEvent(new Event('resize'));   // playground re-measures now that it is visible
+    });
+  }
+
+  /* ---------- Project filters ---------- */
+  const cards = [...document.querySelectorAll('#workGrid .proj')];
   const filters = [...document.querySelectorAll('.filter')];
-  filters.forEach(f => {
+  filters.forEach((f) => {
     const k = f.dataset.f;
-    f.querySelector('.n').textContent = k === 'all' ? cards.length : cards.filter(c => c.dataset.cat.split(' ').includes(k)).length;
+    const match = (c) => k === 'all' || c.dataset.cat.split(' ').includes(k);
+    f.querySelector('.n').textContent = cards.filter(match).length;
     f.addEventListener('click', () => {
-      filters.forEach(x => x.setAttribute('aria-pressed', x === f));
-      cards.forEach(c => { c.hidden = !(k === 'all' || c.dataset.cat.split(' ').includes(k)); });
+      filters.forEach((x) => x.setAttribute('aria-pressed', String(x === f)));
+      cards.forEach((c) => { c.hidden = !match(c); });
+      document.getElementById('workGrid').classList.toggle('filtered', k !== 'all');
     });
   });
 
-  /* ---------- Active nav link ---------- */
-  const links = [...document.querySelectorAll('.nav-links a[href^="#"]')];
-  const secs2 = links.map(a => document.querySelector(a.getAttribute('href')));
-  if ('IntersectionObserver' in window) {
-    const nio = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-    }), { rootMargin: '-45% 0px -50% 0px' });
-    secs2.forEach(s => s && nio.observe(s));
+  /* ---------- Section tracking for the sidebar and the top bar ---------- */
+  const links = [...document.querySelectorAll('.toc-links a[href^="#"]')];
+  const ids = [...new Set(links.map((a) => a.getAttribute('href').slice(1)))];
+  const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+  function setActive() {
+    const y = window.innerHeight * 0.3;
+    let current = sections[0]?.id;
+    for (const s of sections) if (s.getBoundingClientRect().top <= y) current = s.id;
+    // At the very bottom, the last section is the one being read.
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = sections[sections.length - 1]?.id;
+    links.forEach((a) => {
+      const on = a.getAttribute('href') === `#${current}`;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
   }
+  const bar = document.querySelector('.mbar');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => { ticking = false; setActive(); bar?.classList.toggle('scrolled', window.scrollY > 180); });
+  }, { passive: true });
+  setActive();
 
   /* ---------- Copy email ---------- */
   const btn = document.getElementById('copyBtn');
   const email = document.getElementById('email');
-  btn.addEventListener('click', () => {
-    const done = () => { btn.textContent = 'Copied ✓'; setTimeout(() => btn.textContent = 'Copy email', 1800); };
-    const fallback = () => { const r = document.createRange(); r.selectNodeContents(email); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press ⌘/Ctrl+C'; setTimeout(() => btn.textContent = 'Copy email', 2600); };
-    try { navigator.clipboard.writeText(email.textContent).then(done, fallback); } catch { fallback(); }
+  btn?.addEventListener('click', () => {
+    const reset = (ms) => setTimeout(() => { btn.textContent = 'Copy email'; }, ms);
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents(email);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Press Ctrl+C'; reset(2400);
+    };
+    try { navigator.clipboard.writeText(email.textContent).then(() => { btn.textContent = 'Copied'; reset(1600); }, fallback); }
+    catch { fallback(); }
   });
-
-
-  /* ---------- Nav hairline appears once content scrolls under it ---------- */
-  const nav = document.querySelector('.nav');
-  const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 8);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 })();

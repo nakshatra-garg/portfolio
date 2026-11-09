@@ -10,7 +10,7 @@ assets/js/main.js       demo call carousel, waveform, filters, copy-email, nav h
 assets/js/playground.js TTFT vs TTFS latency playground
 assets/js/chat.js       "Ask my résumé" chat (live via worker, or offline BM25 search)
 assets/js/palette.js    Ctrl/⌘+K command palette
-assets/js/motion.js     scroll reveals, stat count-up, journey progress line
+
 assets/data/knowledge.json  the facts the chat answers from (edit this when your CV changes)
 assets/files/           public résumé PDF (phone number removed)
 worker/                 Cloudflare Worker that powers live chat with Claude
